@@ -18,9 +18,19 @@ public class ProjectPO {
     
      public static void main(String[] args) {
         ProjectPO sistema = new ProjectPO();
-        sistema.exibirMenuPrincipal();
+        sistema.login();
     }
-        
+        public void login(){
+            Scanner scanner = new Scanner(System.in);
+            converterParaAscii("Login:",100);
+            System.out.println("Username:");
+            String nome = scanner.nextLine();
+            //verificaçoes
+            System.out.println("Password:");
+            String password = scanner.nextLine();
+            //verificaçoes
+            //depois das verficaçoes chamar sistema.exibirMenuPrincipal();
+        }
         public void exibirMenuPrincipal() {
             Scanner scanner = new Scanner(System.in);
             while (true) {
@@ -72,4 +82,3 @@ public class ProjectPO {
         }
     }
 }
-
