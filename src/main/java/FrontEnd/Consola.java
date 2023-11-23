@@ -5,6 +5,7 @@
 package FrontEnd;
 
 import BackEnd.Sistema;
+import java.awt.Font;
 import java.util.Scanner;
 
 /**
@@ -57,6 +58,21 @@ public class Consola {
     
     public void menuProfessores(){
     }
-  
     
+     private static void converterParaAscii(String texto, int tamanhoFonte){
+        Font fonte = new Font("Lato", Font.PLAIN, tamanhoFonte);
+        for (int i = 0; i < texto.length(); i++) {
+            char caractere = texto.charAt(i);
+            int valorAscii = (int) caractere;
+
+            // Certifique-se de que o caractere é imprimível
+            if (valorAscii >= 32 && valorAscii <= 126) {
+                System.out.print(caractere + " ");
+            } else {
+                // Se não for imprimível, pule para a próxima linha
+                System.out.println();
+            }
+        }
+    }
+  
 }

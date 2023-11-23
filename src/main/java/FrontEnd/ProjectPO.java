@@ -13,7 +13,7 @@ import java.awt.Font;
  *
  * @author user
  */
-public class ProjectPO {
+public class ProjectPO extends Consola {
     private final Consola consola = new Consola();
     private final Sistema sistema = new Sistema();
     
