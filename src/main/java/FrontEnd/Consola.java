@@ -13,25 +13,26 @@ import java.util.Scanner;
  * @author user
  */
 public class Consola {
+    private final Scanner scanner = new Scanner(System.in);
+
     public void login(){
-            Scanner scanner = new Scanner(System.in);
             converterParaAscii("Login:",100);
-            System.out.println("Username:");
+            escrever("Username:");
             String nome = scanner.nextLine();
             //verificaçoes
-            System.out.println("Password:");
+            escrever("Password:");
             String password = scanner.nextLine();
             //verificaçoes
             //depois das verficaçoes chamar sistema.exibirMenuPrincipal();
         }
+    
         public void exibirMenuPrincipal() {
-            Scanner scanner = new Scanner(System.in);
             while (true) {
                 converterParaAscii("Gestao de Departamento",100);
-                System.out.println("\n----- Menu Principal -----");
-                System.out.println("1. Entrar como Administrador");
-                System.out.println("2. Entrar como Professor");
-                System.out.println("3. Sair");
+                escrever("\n----- Menu Principal -----");
+                escrever("1. Entrar como Administrador");
+                escrever("2. Entrar como Professor");
+                escrever("3. Sair");
 
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
@@ -43,23 +44,95 @@ public class Consola {
                     menuProfessores();
                     break;
                 case 3:
-                    System.out.println("Saindo do programa. Até mais!");
+                    escrever("Saindo do programa. Até mais!");
                     scanner.close();
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    escreverErro("Opção inválida. Tente novamente.");
             }
             }
     }
     
     public void menuAdministrador(){
+    converterParaAscii("Menu Admistrador",20);
+    escrever ("1-Informações de Professores");
+    escrever ("2-Informações de Cursos");
+    escrever ("3-Informações de UCS");
+    escrever ("0-Sair");
+    
+    escrever ("Inttroduza a opção pretendida");
+    int opcao = scanner.nextInt();
+    switch(opcao){
+        case 1:
+        //info
+        break;
+        
+        case 2:
+        //info
+        break;
+        
+        case 3:
+        //info
+        break;
+        
+        case 0:
+        //info
+        break;
+        
+        default:
+        escreverErro("Opção inválida. Tente novamente.");
+    }
     }
     
     public void menuProfessores(){
+        //fazer verficações para saber quais as opcoes disponivies consuante o seu cargo
+    converterParaAscii("Menu Professores",20);
+    escrever ("1-");
+    escrever ("2-");
+    escrever ("3-");
+    escrever ("0-");
+    
+    escrever ("Inttroduza a opção pretendida");
+    int opcao = scanner.nextInt();
+    switch(opcao){
+        case 1:
+        //info
+        break;
+        
+        case 2:
+        //info
+        break;
+        
+        case 3:
+        //info
+        break;
+        
+        case 0:
+        //info
+        break;
+        
+        default:
+        escreverErro("Opção inválida. Tente novamente.");
+    }
     }
     
-     private static void converterParaAscii(String texto, int tamanhoFonte){
+    
+    
+    public void escrever(String mensagem) {
+        System.out.println(mensagem);
+    }
+
+    public void escreverErro(String mensagem) {
+        System.err.println(mensagem);
+    }
+
+    public String lerString(String mensagem) {
+        escrever(mensagem);
+        return scanner.nextLine();
+    }
+    
+    private static void converterParaAscii(String texto, int tamanhoFonte){
         Font fonte = new Font("Lato", Font.PLAIN, tamanhoFonte);
         for (int i = 0; i < texto.length(); i++) {
             char caractere = texto.charAt(i);
