@@ -29,7 +29,28 @@ public class Consola {
         return scanner.nextLine();
     }
     
-    public int lerInteiro(String[] opcoes) {
+    
+    public int lerInteiro(String mensagem) {
+        Integer numero = null;
+        String texto;
+
+        do {
+            escrever(mensagem);
+            texto = scanner.nextLine();
+
+            try {
+                numero = Integer.valueOf(texto);
+            } catch (NumberFormatException e) {
+                escreverErro(texto + " nÃ£o Ã© um nÃºmero inteiro vÃ¡lido.");
+            }
+
+        } while (numero == null);
+
+        return numero;
+    }
+    
+    
+    public int lerInteiros(String[] opcoes) {
         Integer numero = null;
         String texto = "";
 

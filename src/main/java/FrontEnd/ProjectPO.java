@@ -17,8 +17,9 @@ import java.util.Arrays;
  *
  * @author user
  */
-public class ProjectPO{
-   
+ 
+
+public class ProjectPO extends Consola {
     private final Consola consola = new Consola();
     private final Sistema sistema = new Sistema();
     
@@ -54,7 +55,7 @@ public class ProjectPO{
                 
 
             consola.escrever("Escolha uma opção: ");
-            opcao = consola.lerInteiro(opcoes);
+            opcao = consola.lerInteiros(opcoes);
             switch (opcao) {
                 case 1:
                     menuAdministrador();
@@ -92,7 +93,7 @@ public class ProjectPO{
     
     consola.escrever ("Inttroduza a opção pretendida");
     
-    opcao = consola.lerInteiro(opcoes);
+    opcao = consola.lerInteiros(opcoes);
     switch(opcao){
         case 1:
         //info
@@ -129,7 +130,7 @@ public class ProjectPO{
     
     consola.escrever ("Inttroduza a opção pretendida");
     
-    opcao = consola.lerInteiro(opcoes);
+    opcao = consola.lerInteiros(opcoes);
     switch(opcao){
         case 1:
         //info
@@ -167,7 +168,7 @@ public class ProjectPO{
     
     consola.escrever ("Inttroduza a opção pretendida");
     
-    opcao = consola.lerInteiro(opcoes);
+    opcao = consola.lerInteiros(opcoes);
     switch(opcao){
         case 1:
         //info
@@ -204,7 +205,7 @@ public class ProjectPO{
     
     consola.escrever ("Inttroduza a opção pretendida");
     
-    opcao = consola.lerInteiro(opcoes);
+    opcao = consola.lerInteiros(opcoes);
     
     switch(opcao){
         case 1:
