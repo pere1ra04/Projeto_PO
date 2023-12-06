@@ -5,9 +5,13 @@
 package FrontEnd;
 
 
+import BackEnd.ListaUCs;
 import BackEnd.Sistema;
+import BackEnd.Professor;
 import java.util.Scanner;
 import java.awt.Font;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 
 /**
  *
@@ -223,5 +227,41 @@ public class ProjectPO{
         consola.escreverErro("Opção inválida. Tente novamente.");
     }
     }   
+    
+    
+    
+    //Funções CRIAR
+    
+    public void criarProfessor(){
+        String nomeProfessor = consola.lerString("Nome:");
+        String nMecanoProfessor = consola.lerString("Número Mecanográfico:");
+        String dataInicio = consola.lerString("Data de inicio de Funções:");
+       
+        String ucsInput= consola.lerString("Digite as unidades curriculares (separadas por vírgula):");
+        ListaUCs listaUC = new ListaUCs(Arrays.asList(ucsInput.split(",")));
+        
+        Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio, listaUC);
+    }
+    
+    public void criarSumario(){
+        Scanner scanner = new Scanner(System.in);
 
+        String Titulo = consola.lerString("Titulo:");
+        String tipo = consola.lerString("Tipo de Sumario");
+        String sumario = consola.lerString("Sumario:");
+        LocalDateTime data;
+        consola.escrever("Numero de Presenças:");
+        int presencas = scanner.nextInt();
+    }
+    
+    public void adicionarRegente(){
+            
+    }
+    
+    public void adicionarDiretordeCurso(){
+        
+    }
+    
+   
 }
+

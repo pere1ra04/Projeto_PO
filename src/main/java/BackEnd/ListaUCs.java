@@ -5,11 +5,24 @@
 package BackEnd;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author user
  */
 public class ListaUCs {
-    private ArrayList<UC> lista;
+    private List<String> unidadesCurriculares;
+
+    public ListaUCs(List<String> unidadesCurriculares) {
+        this.unidadesCurriculares = unidadesCurriculares;
+    }
+
+    public List<String> getUnidadesCurriculares() {
+        return unidadesCurriculares;
+    }
+
+    public void setUnidadesCurriculares(List<String> unidadesCurriculares) {
+        this.unidadesCurriculares = unidadesCurriculares;
+    }
 }

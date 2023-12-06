@@ -52,5 +52,9 @@ public class Professor{
     public void setListaUC(ListaUCs listaUC) {
         this.listaUC = listaUC;
     }
+    
+    
+
+
 }
 
