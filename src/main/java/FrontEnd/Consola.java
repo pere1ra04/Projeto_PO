@@ -6,6 +6,9 @@ package FrontEnd;
 
 import BackEnd.Sistema;
 import java.awt.Font;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -75,6 +78,26 @@ public class Consola {
         } while (numero == null);
 
         return numero;
+    }
+    
+        public LocalDateTime lerDataHora(String mensagem) {
+        LocalDateTime data = null;
+        String texto;
+
+        do {
+            escrever(mensagem + " (dd/mm/aaaa hh:mm)");
+            texto = scanner.nextLine();
+
+            try {
+                data = LocalDateTime.parse(texto, 
+                        DateTimeFormatter.ofPattern("d/M/yyyy HH:mm"));
+            } catch (DateTimeParseException e) {
+                escreverErro(texto + " nÃ£o Ã© um data no formato dd/mm/aaaa hh:mm");
+            }
+
+        } while (data == null);
+
+        return data;
     }
     
     public static void converterParaAscii(String texto, int tamanhoFonte){

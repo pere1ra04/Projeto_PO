@@ -14,14 +14,14 @@ public class Sumario {
     private String titulo;
     private String tipo;
     private String sumario;
-    private LocalDateTime data;
+    private LocalDateTime data_hora;
     private int presencas;
     
-    public Sumario(String titulo, String tipo, String sumario, LocalDateTime data, int presencas){
+    public Sumario(String titulo, String tipo, String textoSumario, LocalDateTime data_hora, int presencas){
         setTitulo(titulo);
         setTipo(tipo);
-        setSumario(sumario);
-        setData(data);
+        setSumario(textoSumario);
+        setData(data_hora);
         setPresencas(presencas);
     }
 
@@ -57,8 +57,7 @@ public class Sumario {
         return LocalDateTime.now();
     }
     public void setData(LocalDateTime novaData){
-        data=novaData; 
+        data_hora=novaData; 
     }
     
-
 }

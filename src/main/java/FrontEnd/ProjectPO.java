@@ -8,9 +8,12 @@ package FrontEnd;
 import BackEnd.ListaUCs;
 import BackEnd.Sistema;
 import BackEnd.Professor;
+import BackEnd.Sumario;
 import java.util.Scanner;
 import java.awt.Font;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 /**
@@ -19,7 +22,7 @@ import java.util.Arrays;
  */
  
 
-public class ProjectPO extends Consola {
+public class ProjectPO extends Consola{
     private final Consola consola = new Consola();
     private final Sistema sistema = new Sistema();
     
@@ -245,14 +248,14 @@ public class ProjectPO extends Consola {
     }
     
     public void criarSumario(){
-        Scanner scanner = new Scanner(System.in);
 
-        String Titulo = consola.lerString("Titulo:");
+        String titulo = consola.lerString("Titulo:");
         String tipo = consola.lerString("Tipo de Sumario");
-        String sumario = consola.lerString("Sumario:");
-        LocalDateTime data;
-        consola.escrever("Numero de Presenças:");
-        int presencas = scanner.nextInt();
+        String textoSumario = consola.lerString("Sumario:");
+        LocalDateTime data_hora = consola.lerDataHora("Data e Hora:");
+        int presencas = consola.lerInteiro("Numero de Presenças:");
+        
+        Sumario sumario = new Sumario(titulo,tipo,textoSumario,data_hora,presencas);
     }
     
     public void adicionarRegente(){
