@@ -14,9 +14,9 @@ public class Aluno {
     private String curso;
 
     public Aluno(String nomeAluno, String nmecanoAluno, String curso) {
-        this.nomeAluno = nomeAluno;
-        this.nMecanoAluno = nmecanoAluno;
-        this.curso = curso;
+        setNomeAluno(nomeAluno);
+        setNMecanoAluno(nmecanoAluno);
+        setCurso(curso);
     }
 
     public String getNomeAluno() {

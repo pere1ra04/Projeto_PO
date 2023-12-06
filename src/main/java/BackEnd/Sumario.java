@@ -18,11 +18,11 @@ public class Sumario {
     private int presencas;
     
     public Sumario(String titulo, String tipo, String sumario, LocalDateTime data, int presencas){
-        this.titulo=titulo;
-        this.tipo=tipo;
-        this.sumario=sumario;
+        setTitulo(titulo);
+        setTipo(tipo);
+        setSumario(sumario);
         setData(data);
-        this.presencas=presencas;
+        setPresencas(presencas);
     }
 
     public String getTitulo() {
@@ -52,7 +52,6 @@ public class Sumario {
     public void setPresencas(int novaspresencas) {
         presencas=novaspresencas;
     }
-    
     
     public LocalDateTime getData (){
         return LocalDateTime.now();

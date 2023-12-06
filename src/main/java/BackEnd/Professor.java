@@ -4,8 +4,6 @@
  */
 package BackEnd;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author user
@@ -14,13 +12,13 @@ public class Professor{
     private String nomeProfessor;
     private String nMecanoProfessor;
     private String dataInicio;
-    private ArrayList<UC> listaUC;
+    private ListaUCs listaUC;
 
-    public Professor(String nome, String nmecano, String dataInicio, ArrayList<UC> listaUC) {
-        this.nomeProfessor = nome;
-        this.nMecanoProfessor = nmecano;
-        this.dataInicio = dataInicio;
-        this.listaUC = listaUC;
+    public Professor(String nome, String nmecano, String dataInicio, ListaUCs listaUC) {
+        setNomeProfessor(nome);
+        setNMecanoProfessor(nmecano);
+        setDataInicio(dataInicio);
+        setListaUC(listaUC);
     }
 
     public String getNomeProfessor() {
@@ -47,15 +45,12 @@ public class Professor{
         this.dataInicio = dataInicio;
     }
 
-    public ArrayList<UC> getListaUC() {
+    public ListaUCs getListaUC() {
         return listaUC;
     }
 
-    public void setListaUC(ArrayList<UC> listaUC) {
+    public void setListaUC(ListaUCs listaUC) {
         this.listaUC = listaUC;
     }
-    //MUDANÇAAAAAAAAAAAAAAAAAAAAA
-    
-    
 }
 

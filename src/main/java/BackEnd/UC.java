@@ -4,21 +4,19 @@
  */
 package BackEnd;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author user
  */
 public class UC {
     private String designacaoUC;
-    private String regenteUC;
-    private ArrayList<Professor> equipaDocente;
+    private Professor regenteUC;
+    private ListaProfessores equipaDocente;
 
-    public UC(String designacaoUC, String regenteUC, ArrayList<Professor> equipaDocente) {
-        this.designacaoUC = designacaoUC;
-        this.regenteUC = regenteUC;
-        this.equipaDocente = equipaDocente;
+    public UC(String designacaoUC, Professor regenteUC, ListaProfessores equipaDocente) {
+        setDesignacaoUC(designacaoUC);
+        setRegenteUC(regenteUC);
+        setEquipaDocente(equipaDocente);
     }
 
     public String getDesignacaoUC() {
@@ -29,21 +27,20 @@ public class UC {
         this.designacaoUC = designacaoUC;
     }
 
-    public String getRegenteUC() {
+    public Professor getRegenteUC() {
         return regenteUC;
     }
 
-    public void setRegenteUC(String regenteUC) {
+    public void setRegenteUC(Professor regenteUC) {
         this.regenteUC = regenteUC;
     }
 
-    public ArrayList<Professor> getEquipaDocente() {
+    public ListaProfessores getEquipaDocente() {
         return equipaDocente;
     }
 
-    public void setEquipaDocente(ArrayList<Professor> equipaDocente) {
+    public void setEquipaDocente(ListaProfessores equipaDocente) {
         this.equipaDocente = equipaDocente;
     }
-    
     
 }

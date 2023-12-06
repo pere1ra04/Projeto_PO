@@ -4,23 +4,23 @@
  */
 package BackEnd;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author user
  */
 public class Curso{
     private String designacaoCurso;
-    private String diretorCurso;
-    private ArrayList<UC> listaUC;
-    private ArrayList<Aluno> listaAlunos;
+    private Professor diretorCurso;
+    private ListaUCs listaUC;
+    private ListaAlunos listaAlunos;
+    private ListaSumarios sumario;
 
-    public Curso(String designacao, String diretorCurso, ArrayList<UC> listaUC, ArrayList<Aluno> listaAlunos) {
-        this.designacaoCurso = designacao;
-        this.diretorCurso = diretorCurso;
-        this.listaUC = listaUC;
-        this.listaAlunos= listaAlunos;
+    public Curso(String designacaoCurso, Professor diretorCurso, ListaUCs listaUC, ListaAlunos listaAlunos, ListaSumarios sumario) {
+        setDesignacaoCurso(designacaoCurso);
+        setDiretorCurso(diretorCurso);
+        setListaUC(listaUC);
+        setListaAlunos(listaAlunos);
+        setSumario(sumario);
     }
 
     public String getDesignacaoCurso() {
@@ -31,27 +31,37 @@ public class Curso{
         this.designacaoCurso = designacao;
     }
 
-    public String getDiretorCurso() {
+    public Professor getDiretorCurso() {
         return diretorCurso;
     }
 
-    public void setDiretorCurso(String diretorCurso) {
+    public void setDiretorCurso(Professor diretorCurso) {
         this.diretorCurso = diretorCurso;
     }
 
-    public ArrayList<UC> getListaUC() {
+    public ListaUCs getListaUC() {
         return listaUC;
     }
 
-    public void setListaUC(ArrayList<UC> listaUC) {
+    public void setListaUC(ListaUCs listaUC) {
         this.listaUC = listaUC;
     }
 
-    public ArrayList<Aluno> getListaAlunos() {
+    public ListaAlunos getListaAlunos() {
         return listaAlunos;
     }
 
-    public void setListaAlunos(ArrayList<Aluno> listaAlunos) {
+    public void setListaAlunos(ListaAlunos listaAlunos) {
         this.listaAlunos = listaAlunos;
     }
+
+    public ListaSumarios getSumario() {
+        return sumario;
+    }
+
+    public void setSumario(ListaSumarios sumario) {
+        this.sumario = sumario;
+    }
+    
+    
 }

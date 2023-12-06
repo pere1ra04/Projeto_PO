@@ -3,14 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package BackEnd;
-import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
-public class Regente extends Professor {
-    public Regente(String nomeRegente, String codigoRegente, String dataDeInicio, ArrayList<UC> listaUC) {
-        super(nomeRegente,codigoRegente,dataDeInicio,listaUC);
+public class Regente{
+    private Professor regente;
+
+    public Professor getRegente() {
+        return regente;
     }
+
+    public void setRegente(Professor regente) {
+        this.regente = regente;
+    }
+    
 }

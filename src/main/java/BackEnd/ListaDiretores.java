@@ -4,19 +4,12 @@
  */
 package BackEnd;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author user
  */
-public class Diretor{
-   private Professor diretor;
-
-    public Professor getDiretor() {
-        return diretor;
-    }
-
-    public void setDiretor(Professor diretor) {
-        this.diretor = diretor;
-    }
-   
+public class ListaDiretores {
+    private ArrayList<Diretor> lista;
 }

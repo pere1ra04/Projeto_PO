@@ -13,8 +13,8 @@ public class Admnistrador {
     private String codigoAdm;
 
     public Admnistrador(String nomeAdm, String codigoAdm) {
-        this.nomeAdm = nomeAdm;
-        this.codigoAdm = codigoAdm;
+        setNomeAdm(nomeAdm);
+        setCodigoAdm(codigoAdm);
     }
 
     public String getNomeAdm() {
