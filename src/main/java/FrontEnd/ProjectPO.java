@@ -8,6 +8,7 @@ package FrontEnd;
 import BackEnd.ListaUCs;
 import BackEnd.Sistema;
 import BackEnd.Professor;
+import BackEnd.Aluno;
 import BackEnd.Sumario;
 import java.util.Scanner;
 import java.awt.Font;
@@ -258,6 +259,14 @@ public class ProjectPO extends Consola{
         Sumario sumario = new Sumario(titulo,tipo,textoSumario,data_hora,presencas);
     }
     
+    public void criarAluno(){
+        String nomeAluno = consola.lerString("Nome do Aluno: ");
+        String nMecanoAluno = consola.lerString("Numero Mecanografico: ");
+        String curso = consola.lerString("Curso: ");
+        
+       Aluno aluno = new Aluno(nomeAluno,nMecanoAluno,curso);
+    }
+    
     public void adicionarRegente(){
             
     }
@@ -265,6 +274,8 @@ public class ProjectPO extends Consola{
     public void adicionarDiretordeCurso(){
         
     }
+    
+    
     
    
 }
