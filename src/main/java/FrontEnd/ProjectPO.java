@@ -5,7 +5,7 @@
 package FrontEnd;
 
 
-import BackEnd.ListaUCs;
+//import BackEnd.ListaUCs;
 import BackEnd.Sistema;
 import BackEnd.Professor;
 import BackEnd.Aluno;
@@ -243,8 +243,8 @@ public class ProjectPO extends Consola{
         String dataInicio = consola.lerString("Data de inicio de Funções:");
        
         String ucsInput= consola.lerString("Digite as unidades curriculares (separadas por vírgula):");
-        ListaUCs listaUC = new ListaUCs(Arrays.asList(ucsInput.split(",")));
-        
+        //ListaUCs listaUC = new ListaUCs(Arrays.asList(ucsInput.split(",")));
+        /*Ver isto*/
         Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio, listaUC);
     }
     

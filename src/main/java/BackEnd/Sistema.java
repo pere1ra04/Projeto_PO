@@ -4,6 +4,8 @@
  */
 package BackEnd;
 
+import java.util.ArrayList;
+
 
 
 /**
@@ -11,6 +13,28 @@ package BackEnd;
  * @author user
  */
 public class Sistema {
-    //Listas para o front end ler
+    private ArrayList<Curso> listaCursos= new ArrayList<>();
+    private ArrayList<Diretor> listaDiretores= new ArrayList<>();
+    private ArrayList<Professor> listaProfessores= new ArrayList<>();
+    private ArrayList<Regente> listaRegentes= new ArrayList<>();
+
+    public ArrayList<Curso> getListaCursos() {
+        return listaCursos;
+    }
+
+    public ArrayList<Diretor> getListaDiretores() {
+        return listaDiretores;
+    }
+
+    public ArrayList<Professor> getListaProfessores() {
+        return listaProfessores;
+    }
+
+    public ArrayList<Regente> getListaRegentes() {
+        return listaRegentes;
+    }
+    
+   
+    
     
 }

@@ -4,6 +4,8 @@
  */
 package BackEnd;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author user
@@ -11,9 +13,9 @@ package BackEnd;
 public class UC {
     private String designacaoUC;
     private Professor regenteUC;
-    private ListaProfessores equipaDocente;
+    private ArrayList<Professor> equipaDocente= new ArrayList<>();
 
-    public UC(String designacaoUC, Professor regenteUC, ListaProfessores equipaDocente) {
+    public UC(String designacaoUC, Professor regenteUC, ArrayList<Professor> equipaDocente) {
         setDesignacaoUC(designacaoUC);
         setRegenteUC(regenteUC);
         setEquipaDocente(equipaDocente);
@@ -35,12 +37,14 @@ public class UC {
         this.regenteUC = regenteUC;
     }
 
-    public ListaProfessores getEquipaDocente() {
+    public ArrayList<Professor> getEquipaDocente() {
         return equipaDocente;
     }
 
-    public void setEquipaDocente(ListaProfessores equipaDocente) {
+    public void setEquipaDocente(ArrayList<Professor> equipaDocente) {
         this.equipaDocente = equipaDocente;
     }
+
+   
     
 }

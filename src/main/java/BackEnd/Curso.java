@@ -4,6 +4,8 @@
  */
 package BackEnd;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author user
@@ -11,16 +13,16 @@ package BackEnd;
 public class Curso{
     private String designacaoCurso;
     private Professor diretorCurso;
-    private ListaUCs listaUC;
-    private ListaAlunos listaAlunos;
-    private ListaSumarios sumario;
+    private ArrayList<UC> listaUCs= new ArrayList<>();
+    private ArrayList<Aluno> listaAlunos= new ArrayList<>(); 
+    private ArrayList<Sumario> listaSumarios= new ArrayList<>();
 
-    public Curso(String designacaoCurso, Professor diretorCurso, ListaUCs listaUC, ListaAlunos listaAlunos, ListaSumarios sumario) {
+    public Curso(String designacaoCurso, Professor diretorCurso, ArrayList<UC> listaUC, ArrayList<Aluno> listaAlunos, ArrayList<Sumario> sumario) {
         setDesignacaoCurso(designacaoCurso);
         setDiretorCurso(diretorCurso);
-        setListaUC(listaUC);
+        setListaUCs(listaUC);
         setListaAlunos(listaAlunos);
-        setSumario(sumario);
+        setListaSumarios(sumario);
     }
 
     public String getDesignacaoCurso() {
@@ -39,29 +41,30 @@ public class Curso{
         this.diretorCurso = diretorCurso;
     }
 
-    public ListaUCs getListaUC() {
-        return listaUC;
+    public ArrayList<UC> getListaUCs() {
+        return listaUCs;
     }
 
-    public void setListaUC(ListaUCs listaUC) {
-        this.listaUC = listaUC;
+    public void setListaUCs(ArrayList<UC> listaUCs) {
+        this.listaUCs = listaUCs;
     }
 
-    public ListaAlunos getListaAlunos() {
+    public ArrayList<Aluno> getListaAlunos() {
         return listaAlunos;
     }
 
-    public void setListaAlunos(ListaAlunos listaAlunos) {
+    public void setListaAlunos(ArrayList<Aluno> listaAlunos) {
         this.listaAlunos = listaAlunos;
     }
 
-    public ListaSumarios getSumario() {
-        return sumario;
+    public ArrayList<Sumario> getListaSumarios() {
+        return listaSumarios;
     }
 
-    public void setSumario(ListaSumarios sumario) {
-        this.sumario = sumario;
+    public void setListaSumarios(ArrayList<Sumario> listaSumarios) {
+        this.listaSumarios = listaSumarios;
     }
+
     
     
 }
