@@ -15,14 +15,13 @@ public class Curso{
     private Professor diretorCurso;
     private ArrayList<UC> listaUCs= new ArrayList<>();
     private ArrayList<Aluno> listaAlunos= new ArrayList<>(); 
-    private ArrayList<Sumario> listaSumarios= new ArrayList<>();
+    
 
-    public Curso(String designacaoCurso, Professor diretorCurso, ArrayList<UC> listaUC, ArrayList<Aluno> listaAlunos, ArrayList<Sumario> sumario) {
+    public Curso(String designacaoCurso, Professor diretorCurso, ArrayList<UC> listaUC, ArrayList<Aluno> listaAlunos) {
         setDesignacaoCurso(designacaoCurso);
         setDiretorCurso(diretorCurso);
         setListaUCs(listaUC);
         setListaAlunos(listaAlunos);
-        setListaSumarios(sumario);
     }
 
     public String getDesignacaoCurso() {
@@ -56,15 +55,18 @@ public class Curso{
     public void setListaAlunos(ArrayList<Aluno> listaAlunos) {
         this.listaAlunos = listaAlunos;
     }
-
-    public ArrayList<Sumario> getListaSumarios() {
-        return listaSumarios;
+ 
+    public void inserirAlunoCurso(Aluno a) {
+        listaAlunos.add(a);
     }
-
-    public void setListaSumarios(ArrayList<Sumario> listaSumarios) {
-        this.listaSumarios = listaSumarios;
-    }
-
     
+    public void removerAlunoCurso(Aluno a) {
+        listaAlunos.remove(a);
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" + "designacaoCurso=" + designacaoCurso + ", diretorCurso=" + diretorCurso + '}';
+    }
     
 }

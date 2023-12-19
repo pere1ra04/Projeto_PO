@@ -55,10 +55,10 @@ public class Professor{
         this.listaUCs = listaUCs;
     }
 
-    
-    
-    
-
+    @Override
+    public String toString() {
+        return "Professor{" + "nomeProfessor=" + nomeProfessor + ", nMecanoProfessor=" + nMecanoProfessor + ", dataInicio=" + dataInicio + '}';
+    }
 
 }
 

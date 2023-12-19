@@ -5,23 +5,20 @@
 package BackEnd;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-/**
- *
- * @author Afonso
- */
 public class Sumario {
     private String titulo;
     private String tipo;
     private String sumario;
     private LocalDateTime data_hora;
-    private int presencas;
+    private ArrayList<Aluno> Presencas= new ArrayList<>();
     
-    public Sumario(String titulo, String tipo, String textoSumario, LocalDateTime data_hora, int presencas){
+    public Sumario(String titulo, String tipo, String textoSumario, LocalDateTime data_hora,ArrayList<Aluno> presencas){
         setTitulo(titulo);
         setTipo(tipo);
         setSumario(textoSumario);
-        setData(data_hora);
+        setData_hora(data_hora);
         setPresencas(presencas);
     }
 
@@ -45,19 +42,26 @@ public class Sumario {
     public void setSumario(String novosumario){
         sumario=novosumario;
     }
-    
-    public int getPresencas() {
-        return presencas;
+
+    public ArrayList<Aluno> getPresencas() {
+        return Presencas;
     }
-    public void setPresencas(int novaspresencas) {
-        presencas=novaspresencas;
+
+    public void setPresencas(ArrayList<Aluno> Presencas) {
+        this.Presencas = Presencas;
     }
-    
-    public LocalDateTime getData (){
-        return LocalDateTime.now();
+
+    public LocalDateTime getData_hora() {
+        return data_hora;
     }
-    public void setData(LocalDateTime novaData){
-        data_hora=novaData; 
+
+    public void setData_hora(LocalDateTime data_hora) {
+        this.data_hora = data_hora;
+    }
+
+    @Override
+    public String toString() {
+        return "Sumario{" + "titulo=" + titulo + ", tipo=" + tipo + ", sumario=" + sumario + ", data_hora=" + data_hora + '}';
     }
     
 }
