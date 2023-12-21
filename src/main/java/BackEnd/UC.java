@@ -14,13 +14,12 @@ public class UC {
     private String designacaoUC;
     private Professor regenteUC;
     private ArrayList<Professor> equipaDocente= new ArrayList<>();
-    private ArrayList<Sumario> listaSumarios= new ArrayList<>();
+    
 
-    public UC(String designacaoUC, Professor regenteUC, ArrayList<Professor> equipaDocente, ArrayList<Sumario> listaSumarios) {
+    public UC(String designacaoUC, Professor regenteUC, ArrayList<Professor> equipaDocente) {
         setDesignacaoUC(designacaoUC);
         setRegenteUC(regenteUC);
         setEquipaDocente(equipaDocente);
-        setListaSumarios(listaSumarios);
     }
 
     public String getDesignacaoUC() {
@@ -46,15 +45,7 @@ public class UC {
     public void setEquipaDocente(ArrayList<Professor> equipaDocente) {
         this.equipaDocente = equipaDocente;
     }
-
-    public ArrayList<Sumario> getListaSumarios() {
-        return listaSumarios;
-    }
-
-    public void setListaSumarios(ArrayList<Sumario> listaSumarios) {
-        this.listaSumarios = listaSumarios;
-    }
-
+    
     @Override
     public String toString() {
         return "UC{" + "designacaoUC=" + designacaoUC + ", regenteUC=" + regenteUC + '}';

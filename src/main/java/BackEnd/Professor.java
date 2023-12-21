@@ -15,12 +15,14 @@ public class Professor{
     private String nMecanoProfessor;
     private String dataInicio;
     private ArrayList<UC> listaUCs= new ArrayList<>();
+    private ArrayList<Sumario> listaSumarios= new ArrayList<>();
 
-    public Professor(String nome, String nmecano, String dataInicio, ArrayList<UC> listaUC) {
+    public Professor(String nome, String nmecano, String dataInicio, ArrayList<UC> listaUC, ArrayList<Sumario> listaSumarios) {
         setNomeProfessor(nome);
         setNMecanoProfessor(nmecano);
         setDataInicio(dataInicio);
         setListaUCs(listaUC);
+        setListaSumarios(listaSumarios); 
     }
 
     public String getNomeProfessor() {
@@ -55,6 +57,34 @@ public class Professor{
         this.listaUCs = listaUCs;
     }
 
+    public ArrayList<Sumario> getListaSumarios() {
+        return listaSumarios;
+    }
+
+    public void setListaSumarios(ArrayList<Sumario> listaSumarios) {
+        this.listaSumarios = listaSumarios;
+    }
+
+    public void listaSumariosPorTipoUC(String Tipo,String UC) {
+        for (Sumario a : listaSumarios) {
+            if(a.getUC().equals(UC)){
+                if(a.getTipo().equals(Tipo)){
+                    System.out.printf("->Titulo: %s\n",a.getTitulo());
+                    System.out.printf("->Tipo: %s\n",a.getTipo());
+                    System.out.printf("->Data: %s\n",a.getData_hora());
+                    System.out.printf("->Sumario: %s",a.getSumario());
+                }
+            }
+        }
+    }
+    
+    public void listaServicoDocente() {
+        for (UC a : listaUCs) {
+            System.out.printf("->UC: %s\n",a.getDesignacaoUC());
+            System.out.printf("->Regente: %s\n",a.getRegenteUC());
+        }
+    }
+    
     @Override
     public String toString() {
         return "Professor{" + "nomeProfessor=" + nomeProfessor + ", nMecanoProfessor=" + nMecanoProfessor + ", dataInicio=" + dataInicio + '}';

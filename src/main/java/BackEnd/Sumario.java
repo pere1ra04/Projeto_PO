@@ -10,13 +10,15 @@ import java.util.ArrayList;
 public class Sumario {
     private String titulo;
     private String tipo;
+    private String UC;
     private String sumario;
     private LocalDateTime data_hora;
-    private ArrayList<Aluno> Presencas= new ArrayList<>();
+    private ArrayList<Aluno> Presencas = new ArrayList<>();
     
-    public Sumario(String titulo, String tipo, String textoSumario, LocalDateTime data_hora,ArrayList<Aluno> presencas){
+    public Sumario(String titulo, String tipo, String UC, String textoSumario, LocalDateTime data_hora,ArrayList<Aluno> presencas){
         setTitulo(titulo);
         setTipo(tipo);
+        setUC(UC);
         setSumario(textoSumario);
         setData_hora(data_hora);
         setPresencas(presencas);
@@ -34,6 +36,14 @@ public class Sumario {
     }
     public void setTipo(String novotipo){
         tipo=novotipo;
+    }
+
+    public String getUC() {
+        return UC;
+    }
+
+    public void setUC(String UC) {
+        this.UC = UC;
     }
     
     public String getSumario() {
