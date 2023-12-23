@@ -68,6 +68,15 @@ public class Sumario {
     public void setData_hora(LocalDateTime data_hora) {
         this.data_hora = data_hora;
     }
+    
+    public boolean verificarPresenca(Aluno nome){
+        for(Aluno b : Presencas){
+            if(b.equals(nome)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public String toString() {
