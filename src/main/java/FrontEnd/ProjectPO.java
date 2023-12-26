@@ -6,9 +6,11 @@ package FrontEnd;
 
 
 //import BackEnd.ListaUCs;
+import BackEnd.Admnistrador;
 import BackEnd.Sistema;
 import BackEnd.Professor;
 import BackEnd.Aluno;
+import BackEnd.Curso;
 import BackEnd.Sumario;
 import BackEnd.UC;
 import java.util.Scanner;
@@ -28,7 +30,7 @@ import java.util.Arrays;
 public class ProjectPO extends Consola{
     private final Consola consola = new Consola();
     private final Sistema sistema = new Sistema();
-    
+    Admnistrador adm = new Admnistrador("ADM", "000000");
      public static void main(String[] args) throws Exception{
      ProjectPO programa = new ProjectPO();
      programa.login();
@@ -37,11 +39,13 @@ public class ProjectPO extends Consola{
     public void login(){
         
             consola.converterParaAscii("Login:",100);
-            
+            String nome = consola.lerString("Nome:");
+            //verificaçoes
             String numero = consola.lerString("Numero Mecanografico:");
             //verificaçoes
-            String password = consola.lerString("Password");
-            //verificaçoes
+            if(adm.verificarAdmnistrador(nome,numero)){
+                menuAdministrador();
+            }
             exibirMenuPrincipal();
         }
     
@@ -51,8 +55,8 @@ public class ProjectPO extends Consola{
                 consola.escrever("\n----- Menu Principal -----");
                 
                 int opcao;
+                
                 String[] opcoes = {
-                    "Entrar como Administrador",
                     "Entrar como Professor",
                     "Entrar como Regente de UC",
                     "Entrar como Diretor de Curso",
@@ -65,18 +69,15 @@ public class ProjectPO extends Consola{
             opcao = consola.lerInteiros(opcoes);
             switch (opcao) {
                 case 1:
-                    menuAdministrador();
-                    break;
-                case 2:
                     menuProfessores();
                     break;
-                case 3:
+                case 2:
                     menuRegente();
                     break;
-                case 4:
+                case 3:
                     menuDiretorCurso();
                     break;
-                case 5:
+                case 4:
                     consola.escrever("Saindo do programa. Até mais!");
                     System.exit(0);
                     break;
@@ -114,7 +115,8 @@ public class ProjectPO extends Consola{
         break;
         
         case 4:
-        //info
+        consola.escrever("Saindo do programa. Até mais!");
+        System.exit(0);
         break;
        
     }
@@ -229,19 +231,28 @@ public class ProjectPO extends Consola{
     
     
     //Funções CRIAR
+    public void criarCurso(){
+        String designacaoCurso = consola.lerString("Designação:");
+        String diretorCurso = consola.lerString("Regente UC:");
+        
+        Curso curso = new Curso(designacaoCurso,diretorCurso);
+    }
     
     public void criarUc(){
+        String designacaoUC = consola.lerString("Designação:");
+        String regenteUC = consola.lerString("Regente UC:");
         
+        UC uc = new UC(designacaoUC,regenteUC);
     }
     
     public void criarProfessor(){
         String nomeProfessor = consola.lerString("Nome:");
         String nMecanoProfessor = consola.lerString("Número Mecanográfico:");
         String dataInicio = consola.lerString("Data de inicio de Funções:");
-        ArrayList<UC> ListaUCs = new ArrayList<>();
-        ArrayList<Sumario> ListaSumarios = new ArrayList<>();
+        //ArrayList<UC> ListaUCs = new ArrayList<>();
+        //ArrayList<Sumario> ListaSumarios = new ArrayList<>();
         
-        Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio,ListaUCs,ListaSumarios );
+        Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio/*,ListaUCs,ListaSumarios*/ );
     }
     
     public void criarSumario(){
@@ -251,9 +262,9 @@ public class ProjectPO extends Consola{
         String uc = consola.lerString("Uc:");
         String textoSumario = consola.lerString("Sumario:");
         LocalDateTime data_hora = consola.lerDataHora("Data e Hora:");
-        ArrayList<Aluno> presencas =  new ArrayList<>();
+        //ArrayList<Aluno> presencas =  new ArrayList<>();
         
-        Sumario sumario = new Sumario(titulo,tipo,uc,textoSumario,data_hora,presencas);
+        Sumario sumario = new Sumario(titulo,tipo,uc,textoSumario,data_hora/*,presencas*/);
     }
     
     public void criarAluno(){

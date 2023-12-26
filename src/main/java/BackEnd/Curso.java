@@ -13,16 +13,21 @@ import java.util.ArrayList;
  */
 public class Curso implements Serializable {
     private String designacaoCurso;
-    private Professor diretorCurso;
+    private String diretorCurso;
     private ArrayList<UC> listaUCs= new ArrayList<>();
     private ArrayList<Aluno> listaAlunos= new ArrayList<>(); 
     
 
-    public Curso(String designacaoCurso, Professor diretorCurso, ArrayList<UC> listaUC, ArrayList<Aluno> listaAlunos) {
+    public Curso(String designacaoCurso, String diretorCurso, ArrayList<UC> listaUC, ArrayList<Aluno> listaAlunos) {
         setDesignacaoCurso(designacaoCurso);
         setDiretorCurso(diretorCurso);
         setListaUCs(listaUC);
         setListaAlunos(listaAlunos);
+    }
+    
+    public Curso(String designacaoCurso, String diretorCurso){
+        setDesignacaoCurso(designacaoCurso);
+        setDiretorCurso(diretorCurso);
     }
 
     public String getDesignacaoCurso() {
@@ -33,11 +38,11 @@ public class Curso implements Serializable {
         this.designacaoCurso = designacao;
     }
 
-    public Professor getDiretorCurso() {
+    public String getDiretorCurso() {
         return diretorCurso;
     }
 
-    public void setDiretorCurso(Professor diretorCurso) {
+    public void setDiretorCurso(String diretorCurso) {
         this.diretorCurso = diretorCurso;
     }
 

@@ -33,4 +33,7 @@ public class Admnistrador {
         this.codigoAdm = codigoAdm;
     }
     
+    public boolean verificarAdmnistrador(String nomeAdm,String codigoAdm){
+        return ((this.getNomeAdm().equals(nomeAdm))&&(this.getCodigoAdm().equals(codigoAdm)));
+    }
 }

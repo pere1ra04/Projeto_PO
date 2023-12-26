@@ -25,6 +25,12 @@ public class Professor implements Serializable {
         setListaUCs(listaUC);
         setListaSumarios(listaSumarios); 
     }
+    
+    public Professor(String nome, String nmecano, String dataInicio) {
+        setNomeProfessor(nome);
+        setNMecanoProfessor(nmecano);
+        setDataInicio(dataInicio);
+    }
 
     public String getNomeProfessor() {
         return nomeProfessor;

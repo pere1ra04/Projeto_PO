@@ -24,6 +24,14 @@ public class Sumario {
         setData_hora(data_hora);
         setPresencas(presencas);
     }
+    
+    public Sumario(String titulo, String tipo, String UC, String textoSumario, LocalDateTime data_hora){
+        setTitulo(titulo);
+        setTipo(tipo);
+        setUC(UC);
+        setSumario(textoSumario);
+        setData_hora(data_hora);
+    }
 
     public String getTitulo() {
         return titulo;

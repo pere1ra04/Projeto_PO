@@ -13,16 +13,21 @@ import java.util.ArrayList;
  */
 public class UC {
     private String designacaoUC;
-    private Professor regenteUC;
+    private String regenteUC;
     private ArrayList<Professor> equipaDocente= new ArrayList<>();
     
 
-    public UC(String designacaoUC, Professor regenteUC, ArrayList<Professor> equipaDocente) {
+    public UC(String designacaoUC, String regenteUC, ArrayList<Professor> equipaDocente) {
         setDesignacaoUC(designacaoUC);
         setRegenteUC(regenteUC);
         setEquipaDocente(equipaDocente);
     }
-
+    
+    public UC(String designacaoUC, String regenteUC) {
+        setDesignacaoUC(designacaoUC);
+        setRegenteUC(regenteUC);
+    }
+    
     public String getDesignacaoUC() {
         return designacaoUC;
     }
@@ -31,11 +36,11 @@ public class UC {
         this.designacaoUC = designacaoUC;
     }
 
-    public Professor getRegenteUC() {
+    public String getRegenteUC() {
         return regenteUC;
     }
 
-    public void setRegenteUC(Professor regenteUC) {
+    public void setRegenteUC(String regenteUC) {
         this.regenteUC = regenteUC;
     }
 
