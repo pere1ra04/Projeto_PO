@@ -4,13 +4,14 @@
  */
 package BackEnd;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
-public class Professor{
+public class Professor implements Serializable {
     private String nomeProfessor;
     private String nMecanoProfessor;
     private String dataInicio;
@@ -64,6 +65,8 @@ public class Professor{
     public void setListaSumarios(ArrayList<Sumario> listaSumarios) {
         this.listaSumarios = listaSumarios;
     }
+    
+    
 
     public void listaSumariosPorTipoUC(String Tipo,String UC) {
         for (Sumario a : listaSumarios) {

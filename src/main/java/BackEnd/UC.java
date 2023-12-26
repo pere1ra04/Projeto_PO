@@ -4,6 +4,7 @@
  */
 package BackEnd;
 
+
 import java.util.ArrayList;
 
 /**
@@ -45,6 +46,7 @@ public class UC {
     public void setEquipaDocente(ArrayList<Professor> equipaDocente) {
         this.equipaDocente = equipaDocente;
     }
+    
     
     @Override
     public String toString() {

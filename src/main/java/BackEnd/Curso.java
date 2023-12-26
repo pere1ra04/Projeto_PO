@@ -4,13 +4,14 @@
  */
 package BackEnd;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
-public class Curso{
+public class Curso implements Serializable {
     private String designacaoCurso;
     private Professor diretorCurso;
     private ArrayList<UC> listaUCs= new ArrayList<>();

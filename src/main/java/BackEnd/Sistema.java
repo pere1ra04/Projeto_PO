@@ -5,7 +5,7 @@
 package BackEnd;
 
 import java.util.ArrayList;
-
+import java.io.*;
 
 
 /**
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class Sistema {
     private ArrayList<Curso> listaCursos= new ArrayList<>();
     private ArrayList<Professor> listaProfessores= new ArrayList<>();
+ 
+    
 
     public ArrayList<Curso> getListaCursos() {
         return listaCursos;
@@ -62,6 +64,49 @@ public class Sistema {
         for (Professor a: listaProfessores){
             System.out.printf("-> %s\n",a.getNomeProfessor());
         }
+    }
+    
+    /*public boolean verificarExistenciaUCs(ArrayList<String> ucsEscritas, ListaUCs listaUCsExistente) {
+        ArrayList<String> ucsExistente = listaUCsExistente.getUCs();
+
+        for (String ucInput : ucsEscritas) {
+            if (!ucsExistente.contains(ucInput)) {
+                // Se alguma UC não existir na lista, retornar false
+                return false;
+            }
+        }
+
+        // Todas as UCs existem na lista, retornar true
+        return true;
+    } */
+    
+
+
+
+
+// Função para salvar o estado do Sistema em um arquivo
+    public void salvarEstado(String nomeArquivo) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+            oos.writeObject(listaCursos);
+            oos.writeObject(listaProfessores);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // Função para carregar o estado do Sistema a partir de um arquivo
+    public void carregarEstado(String nomeArquivo) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+            listaCursos = (ArrayList<Curso>) ois.readObject();
+            listaProfessores = (ArrayList<Professor>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    public void salvarAdmin(){
+        
     }
     
 }

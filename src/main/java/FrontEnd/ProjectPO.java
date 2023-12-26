@@ -10,11 +10,13 @@ import BackEnd.Sistema;
 import BackEnd.Professor;
 import BackEnd.Aluno;
 import BackEnd.Sumario;
+import BackEnd.UC;
 import java.util.Scanner;
 import java.awt.Font;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -36,7 +38,7 @@ public class ProjectPO extends Consola{
         
             consola.converterParaAscii("Login:",100);
             
-            String numero = consola.lerString("Numero:");
+            String numero = consola.lerString("Numero Mecanografico:");
             //verificaçoes
             String password = consola.lerString("Password");
             //verificaçoes
@@ -54,7 +56,8 @@ public class ProjectPO extends Consola{
                     "Entrar como Professor",
                     "Entrar como Regente de UC",
                     "Entrar como Diretor de Curso",
-                    "Sair",
+                    "Sair"
+                        
                 };
                 
 
@@ -77,8 +80,7 @@ public class ProjectPO extends Consola{
                     consola.escrever("Saindo do programa. Até mais!");
                     System.exit(0);
                     break;
-                default:
-                    consola.escreverErro("Opção inválida. Tente novamente.");
+                
             }
             }
     }
@@ -114,9 +116,7 @@ public class ProjectPO extends Consola{
         case 4:
         //info
         break;
-        
-        default:
-        consola.escreverErro("Opção inválida. Tente novamente.");
+       
     }
     }
     
@@ -151,9 +151,6 @@ public class ProjectPO extends Consola{
         case 4:
         //info
         break;
-        
-        default:
-        consola.escreverErro("Opção inválida. Tente novamente.");
     }
     }
     
@@ -190,8 +187,6 @@ public class ProjectPO extends Consola{
         //info
         break;
         
-        default:
-        consola.escreverErro("Opção inválida. Tente novamente.");
     }
     }
     
@@ -228,8 +223,6 @@ public class ProjectPO extends Consola{
         //info
         break;
         
-        default:
-        consola.escreverErro("Opção inválida. Tente novamente.");
     }
     }   
     
@@ -237,26 +230,30 @@ public class ProjectPO extends Consola{
     
     //Funções CRIAR
     
+    public void criarUc(){
+        
+    }
+    
     public void criarProfessor(){
         String nomeProfessor = consola.lerString("Nome:");
         String nMecanoProfessor = consola.lerString("Número Mecanográfico:");
         String dataInicio = consola.lerString("Data de inicio de Funções:");
-       
-        String ucsInput= consola.lerString("Digite as unidades curriculares (separadas por vírgula):");
-        //ListaUCs listaUC = new ListaUCs(Arrays.asList(ucsInput.split(",")));
-        /*Ver isto*/
-        Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio, listaUC);
+        ArrayList<UC> ListaUCs = new ArrayList<>();
+        ArrayList<Sumario> ListaSumarios = new ArrayList<>();
+        
+        Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio,ListaUCs,ListaSumarios );
     }
     
     public void criarSumario(){
 
         String titulo = consola.lerString("Titulo:");
         String tipo = consola.lerString("Tipo de Sumario");
+        String uc = consola.lerString("Uc:");
         String textoSumario = consola.lerString("Sumario:");
         LocalDateTime data_hora = consola.lerDataHora("Data e Hora:");
-        int presencas = consola.lerInteiro("Numero de Presenças:");
+        ArrayList<Aluno> presencas =  new ArrayList<>();
         
-        Sumario sumario = new Sumario(titulo,tipo,textoSumario,data_hora,presencas);
+        Sumario sumario = new Sumario(titulo,tipo,uc,textoSumario,data_hora,presencas);
     }
     
     public void criarAluno(){
