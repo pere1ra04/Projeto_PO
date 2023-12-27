@@ -116,4 +116,23 @@ public class Consola {
         }
     }
 
+    public boolean SoTemLetra(String palavra) {
+        for (char a : palavra.toCharArray()) {
+            if (!((a >= 'A' && a <= 'Z') || (a >= 'a' && a <= 'z'))) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+
+    public boolean SoTemNumero(String numero) {
+        for (char n : numero.toCharArray()) {
+            if (!(n >= '0' && n <= '9')) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
 }

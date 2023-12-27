@@ -39,14 +39,58 @@ public class ProjectPO extends Consola{
     public void login(){
         
             consola.converterParaAscii("Login:",100);
-            String nome = consola.lerString("Nome:");
-            //verificaçoes
-            String numero = consola.lerString("Numero Mecanografico:");
-            //verificaçoes
-            if(adm.verificarAdmnistrador(nome,numero)){
+            int count=0;
+            while(count!=3){
+                String nome = consola.lerString("Nome:");
+                if(nome.length() < 1){
+                    consola.escrever("O nome deve conter pelo menos 1 Letra.");
+                }else{
+                    count = count + 1;
+                }
+                if(nome.length() >= 100){
+                    consola.escrever("O nome deve conter no maximo 100 Letras.");
+                }else{
+                    count = count + 1;
+                }
+                if(consola.SoTemLetra(nome)){
+                    count = count + 1;
+                }else{
+                    consola.escrever("O nome deve conter apenas Letras.");
+                }
+                if (count == 3) {
+                    break;
+                }else{
+                    count = 0;
+                }
+            }
+            int count2=0;
+            while(count2!=3){
+                String numero = consola.lerString("Numero Mecanografico:");
+                if(numero.length() < 1){
+                    consola.escrever("O Numero Mecanografico deve conter pelo menos 1 Digito.");
+                }else{
+                    count2 = count2 + 1;
+                }
+                if(numero.length() > 6){
+                    consola.escrever("O Numero Mecanografico deve conter no maximo 6 Digitos.");
+                }else{
+                    count2 = count2 + 1;
+                }
+                if(consola.SoTemLetra(numero)){
+                    count2 = count2 + 1;
+                }else{
+                    consola.escrever("O Numero Mecanografico deve conter apenas Digitos.");
+                }
+                if (count2 == 3) {
+                    break;
+                }else{
+                    count2 = 0;
+                }
+            }
+            /*if(adm.verificarAdmnistrador(nome,numero)){
                 menuAdministrador();
             }
-            exibirMenuPrincipal();
+            exibirMenuPrincipal(); */
         }
     
         public void exibirMenuPrincipal() {
