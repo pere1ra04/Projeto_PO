@@ -169,7 +169,7 @@ public class ProjectPO extends Consola {
         int opcao;
         String[] opcoes = {
             "Criar Sumario",
-            "Consultar Sumarios",
+            "Consultar lista de sumários por UC e por tipo de aula.",
             "Consultar Serviço Docente",
             "Sair",};
 
@@ -178,11 +178,13 @@ public class ProjectPO extends Consola {
         opcao = consola.lerInteiros(opcoes);
         switch (opcao) {
             case 1:
-                //info
+                //criarSumario();
                 break;
 
             case 2:
-                //info
+                //sistema.ListarSumariosPorUCEPorTipo(p);
+                //passar como argumento o professor, quando se faz o login tentar passar o objeto Professor
+                //se não mudar o parametro recebido depois
                 break;
 
             case 3:
@@ -244,15 +246,20 @@ public class ProjectPO extends Consola {
 
         switch (opcao) {
             case 1:
+                //mudarDesignação(a);
                 //info
                 break;
 
             case 2:
-                //info
+                String nomedocurso = consola.lerString("Nome do Curso:");
+                Sistema.NumeroAlunosCurso(nomedocurso);
+                //depois têm que se mudar de forma com que o diretor só liste do seu curso
                 break;
 
             case 3:
-                //info
+                String nomedocurso2 = consola.lerString("Nome do Curso:");
+                Sistema.ListarProfessoresPorCurso(nomedocurso2);
+                //depois têm que se mudar de forma com que o diretor só liste do seu curso
                 break;
 
             case 4:
@@ -341,4 +348,7 @@ public class ProjectPO extends Consola {
         }
     }
 
+    public void mudarDesignação(Curso a){
+        a.setDesignacaoCurso(consola.lerString("Nova Designação: "));
+    }
 }

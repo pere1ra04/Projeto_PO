@@ -66,8 +66,23 @@ public class Sistema {
         }
         return totalAlunos;
     }
+    public void ListarProfessoresPorCurso(String Curso){
+            System.out.printf("\t-> %s\n", Curso);
+            for(Curso a : listaCursos){
+                if(a.getDesignacaoCurso().equals(Curso)){
+                    for(UC b : a.getListaUCs()){
+                        for(Professor c : b.getEquipaDocente()){
+                            System.out.printf("Nome: %s\n", c.getNomeProfessor());
+                            System.out.printf("Numero Mecanografico: %s\n", c.getNMecanoProfessor());
+                            System.out.print("\n");
+                }
+            }
+        }
+    }
+}
     
-    public void ListarProfessoresPorCurso(){
+    
+    public void ListarProfessoresPorTodosOsCursos(){
         for(Curso a: listaCursos){
             System.out.printf("\t-> %s\n", a.getDesignacaoCurso());
             for(UC b : a.getListaUCs()){
@@ -79,7 +94,68 @@ public class Sistema {
                 }
             }
         }
-    } 
+    }
+    
+    public void ListarSumariosPorUCEPorTipo(Professor p){
+        String tipo1="T", tipo2="PL", tipo3="TP";
+        for(UC a : p.getListaUCs()){
+            for(Sumario b : p.getListaSumarios()){
+                if(a.getDesignacaoUC().equals(b.getUC())){
+                    System.out.printf("\t\t->%s\n", a.getDesignacaoUC());
+                    if(tipo1.equals(b.getTipo())){
+                        System.out.printf("\tAula: %s\n", b.getTipo());
+                        System.out.printf("Titulo: %s\n", b.getTitulo());
+                        System.out.printf("Sumario: %s\n", b.getSumario());
+                        System.out.printf("Lista de Alunos: ");
+                        for(Aluno c : b.getPresencas()){
+                            System.out.printf("Nome: %s\n", c.getNomeAluno());
+                            System.out.printf("Numero Mecanografico: %s\n", c.getNMecanoAluno());
+                            System.out.printf("Curso: %s\n", c.getCurso());
+                            System.out.printf("\n");
+                        }
+                    }
+                }  
+        }
+    }
+        for(UC a : p.getListaUCs()){
+            for(Sumario b : p.getListaSumarios()){
+                if(a.getDesignacaoUC().equals(b.getUC())){
+                    System.out.printf("\t\t->%s\n", a.getDesignacaoUC());
+                    if(tipo2.equals(b.getTipo())){
+                        System.out.printf("\tAula: %s\n", b.getTipo());
+                        System.out.printf("Titulo: %s\n", b.getTitulo());
+                        System.out.printf("Sumario: %s\n", b.getSumario());
+                        System.out.printf("Lista de Alunos: ");
+                        for(Aluno c : b.getPresencas()){
+                            System.out.printf("Nome: %s\n", c.getNomeAluno());
+                            System.out.printf("Numero Mecanografico: %s\n", c.getNMecanoAluno());
+                            System.out.printf("Curso: %s\n", c.getCurso());
+                            System.out.printf("\n");
+                        }
+                    }
+                }  
+        }
+    }
+        for(UC a : p.getListaUCs()){
+            for(Sumario b : p.getListaSumarios()){
+                if(a.getDesignacaoUC().equals(b.getUC())){
+                    System.out.printf("\t\t->%s\n", a.getDesignacaoUC());
+                    if(tipo3.equals(b.getTipo())){
+                        System.out.printf("\tAula: %s\n", b.getTipo());
+                        System.out.printf("Titulo: %s\n", b.getTitulo());
+                        System.out.printf("Sumario: %s\n", b.getSumario());
+                        System.out.printf("Lista de Alunos: ");
+                        for(Aluno c : b.getPresencas()){
+                            System.out.printf("Nome: %s\n", c.getNomeAluno());
+                            System.out.printf("Numero Mecanografico: %s\n", c.getNMecanoAluno());
+                            System.out.printf("Curso: %s\n", c.getCurso());
+                            System.out.printf("\n");
+                        }
+                    }
+                }  
+        }
+    }
+}
 
     
     public ArrayList<Professor> getListaProfessores() {
