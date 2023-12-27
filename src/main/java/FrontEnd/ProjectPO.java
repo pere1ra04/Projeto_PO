@@ -139,21 +139,21 @@ public class ProjectPO extends Consola {
             "Informações de UCS",
             "Sair",};
 
-        consola.escrever("Inttroduza a opção pretendida");
+        consola.escrever("Introduza a opção pretendida");
 
         opcao = consola.lerInteiros(opcoes);
         switch (opcao) {
             case 1:
-                //info
-                break;
-
+                menuINFprofs();
+            break;
+                
             case 2:
-                //info
-                break;
+                menuINFcursos();
+            break;
 
             case 3:
-                //info
-                break;
+                menuINFuc();
+            break;
 
             case 4:
                 consola.escrever("Saindo do programa. Até mais!");
@@ -162,6 +162,101 @@ public class ProjectPO extends Consola {
 
         }
     }
+    
+    public void menuINFprofs(){
+        int opcao;
+                String[] opcoes = {
+                  "Adicionar Professor",
+                  "Apagar Professor",
+                  "Alterar Informações de Professor",
+                  "Voltar",};
+                consola.escrever("Introduza a opção pretendida:");
+                
+                opcao = consola.lerInteiros(opcoes);
+                switch(opcao){
+                    case 1:
+                        
+                    break;
+                    
+                    case 2:
+                        
+                    break;
+                    
+                    case 3:
+                        
+                    break;
+                    
+                    case 4:
+                        menuAdministrador();
+                    break;
+                }
+    }
+    
+    public void menuINFcursos(){
+        int opcao;
+                String[] opcoes = {
+                  "Adicionar Curso",
+                  "Apagar Curso",
+                  "Alterar Informações do Curso",
+                  "Voltar",};
+                consola.escrever("Introduza a opção pretendida:");
+                
+                opcao = consola.lerInteiros(opcoes);
+                switch(opcao){
+                    case 1:
+                        
+                    break;
+                    
+                    case 2:
+                        
+                    break;
+                    
+                    case 3:
+                        
+                    break;
+                    
+                    case 4:
+                        menuAdministrador();
+                    break;
+                }
+    }
+    
+    public void menuINFuc(){
+        int opcao;
+                String[] opcoes = {
+                  "Adicionar Unidade Curricular",
+                  "Apagar Unidade Curricular",
+                  "Alterar Informações da Unidade Curricular",
+                  "Voltar",};
+                consola.escrever("Introduza a opção pretendida:");
+                
+                opcao = consola.lerInteiros(opcoes);
+                switch(opcao){
+                    case 1:
+                        
+                    break;
+                    
+                    case 2:
+                        
+                    break;
+                    
+                    case 3:
+                        
+                    break;
+                    
+                    case 4:
+                        menuAdministrador();
+                    break;
+                }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
     public void menuProfessores() {
 
@@ -292,6 +387,58 @@ public class ProjectPO extends Consola {
         //ArrayList<Sumario> ListaSumarios = new ArrayList<>();
 
         Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio/*,ListaUCs,ListaSumarios*/);
+    }
+    
+    public void tornarRegente(){
+       String nome = consola.lerString("Qual o nome o professor que deseja tornar Regente:");
+       //procurar na lista de professores
+       for (Professor a: listaProfessores){
+           if(a.getNomeProfessor().equals(nome)){
+               String uc = consola.lerString("Qual a Unidade Curricular:");
+               //verficar se existe e se a mesma ja tem regente
+               for (UC b: listaUcs){
+                   if(b.getDesignacaoUC().equals(uc)){
+                       if(b.getRegenteUC().isEmpty()){
+                           b.setRegenteUC(nome);
+                       }
+                       else{
+                           consola.escreverErro("Esta Unidade Curricular já tem Regente");
+                       }
+                   }
+                   else{
+                      consola.escreverErro("Unidade Curricular não encontrada");
+                   }
+               }
+           }
+           else{
+               consola.escreverErro("Professor não encontrado");
+           }
+       }
+       
+    }
+    public void tornarDiretor(){
+        String nome = consola.lerString("Qual o nome o professor que deseja tornar Diretor:");
+        for (Professor a: listaProfessores){
+           if(a.getNomeProfessor().equals(nome)){
+               String curso = consola.lerString("Qual o Curso:");
+               for (Curso c: listaCursos){
+                   if(c.getDiretorCurso().equals(curso)){
+                       if(c.getDiretorCurso().isEmpty()){
+                           c.setDiretorCurso(nome);
+                       }
+                       else{
+                           consola.escreverErro("Este Curso já tem Regente");
+                       }
+                   }
+                   else{
+                       consola.escreverErro("Curso não encontrado");
+                   }
+               }
+           }
+           else{
+               consola.escreverErro("Professor não encontrado");
+           }
+        }
     }
 
     public void criarSumario() {
