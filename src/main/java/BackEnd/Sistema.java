@@ -36,6 +36,17 @@ public class Sistema {
         }
     }
     
+    public UC EncontrarUC(String designacao){
+        for (Curso a: listaCursos){
+            for(UC b : a.getListaUCs()){
+                if(b.getDesignacaoUC().equals(designacao)){
+                    return b;
+                }
+            }
+        }
+        return null;
+    }
+    
     public void ListarAlunos(){
         for (Curso a: listaCursos){
             for(Aluno b : a.getListaAlunos()){
@@ -55,6 +66,21 @@ public class Sistema {
         }
         return totalAlunos;
     }
+    
+    public void ListarProfessoresPorCurso(){
+        for(Curso a: listaCursos){
+            System.out.printf("\t-> %s\n", a.getDesignacaoCurso());
+            for(UC b : a.getListaUCs()){
+                System.out.printf("\t-> %s\n", b.getDesignacaoUC());
+                for(Professor c : b.getEquipaDocente()){
+                    System.out.printf("Nome: %s\n", c.getNomeProfessor());
+                    System.out.printf("Numero Mecanografico: %s\n", c.getNMecanoProfessor());
+                    System.out.print("\n");
+                }
+            }
+        }
+    } 
+
     
     public ArrayList<Professor> getListaProfessores() {
         return listaProfessores;
@@ -105,8 +131,6 @@ public class Sistema {
     }
     
     
-    public void salvarAdmin(){
-        
-    }
+    
     
 }

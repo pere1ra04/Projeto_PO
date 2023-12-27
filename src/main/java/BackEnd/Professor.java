@@ -72,7 +72,13 @@ public class Professor implements Serializable {
         this.listaSumarios = listaSumarios;
     }
     
+    public void inserirServicoDocente(UC a) {
+        listaUCs.add(a);
+    }
     
+    public void removerServicoDocente(UC a) {
+        listaUCs.remove(a);
+    }
 
     public void listaSumariosPorTipoUC(String Tipo,String UC) {
         for (Sumario a : listaSumarios) {
