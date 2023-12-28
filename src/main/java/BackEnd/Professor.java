@@ -30,6 +30,7 @@ public class Professor implements Serializable {
         setNomeProfessor(nome);
         setNMecanoProfessor(nmecano);
         setDataInicio(dataInicio);
+
     }
 
     public String getNomeProfessor() {
@@ -55,6 +56,7 @@ public class Professor implements Serializable {
     public void setDataInicio(String dataInicio) {
         this.dataInicio = dataInicio;
     }
+
 
     public ArrayList<UC> getListaUCs() {
         return listaUCs;

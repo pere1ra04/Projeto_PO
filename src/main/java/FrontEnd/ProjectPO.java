@@ -389,55 +389,119 @@ public class ProjectPO extends Consola {
         Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio/*,ListaUCs,ListaSumarios*/);
     }
     
-    public void tornarRegente(){
-       String nome = consola.lerString("Qual o nome o professor que deseja tornar Regente:");
-       //procurar na lista de professores
-       for (Professor a: listaProfessores){
-           if(a.getNomeProfessor().equals(nome)){
-               String uc = consola.lerString("Qual a Unidade Curricular:");
-               //verficar se existe e se a mesma ja tem regente
-               for (UC b: listaUcs){
-                   if(b.getDesignacaoUC().equals(uc)){
-                       if(b.getRegenteUC().isEmpty()){
-                           b.setRegenteUC(nome);
-                       }
-                       else{
-                           consola.escreverErro("Esta Unidade Curricular já tem Regente");
-                       }
-                   }
-                   else{
-                      consola.escreverErro("Unidade Curricular não encontrada");
-                   }
-               }
-           }
-           else{
-               consola.escreverErro("Professor não encontrado");
-           }
-       }
-       
+    public void tornarRegente() {
+        String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
+        boolean professorEncontrado = false;
+
+    // Procurar na lista de professores
+    for (Professor a : listaProfessores) {
+        if (a.getNomeProfessor().equals(nome)) {
+            professorEncontrado = true;
+
+            String uc = consola.lerString("Qual a Unidade Curricular:");
+            boolean ucEncontrada = false;
+
+            // Verificar se a UC existe e se já tem regente
+            for (UC b : listaUcs) {
+                if (b.getDesignacaoUC().equals(uc)) {
+                    ucEncontrada = true;
+
+                    if (b.getRegenteUC() == null) {
+                        b.setRegenteUC(nome);
+                    } else {
+                        consola.escreverErro("Esta Unidade Curricular já tem Regente");
+                    }
+                }
+            }
+
+            if (!ucEncontrada) {
+                consola.escreverErro("Unidade Curricular não encontrada");
+            }
+            break; 
+        }
     }
-    public void tornarDiretor(){
-        String nome = consola.lerString("Qual o nome o professor que deseja tornar Diretor:");
-        for (Professor a: listaProfessores){
-           if(a.getNomeProfessor().equals(nome)){
-               String curso = consola.lerString("Qual o Curso:");
-               for (Curso c: listaCursos){
-                   if(c.getDiretorCurso().equals(curso)){
-                       if(c.getDiretorCurso().isEmpty()){
-                           c.setDiretorCurso(nome);
-                       }
-                       else{
-                           consola.escreverErro("Este Curso já tem Regente");
-                       }
-                   }
-                   else{
-                       consola.escreverErro("Curso não encontrado");
-                   }
-               }
-           }
-           else{
-               consola.escreverErro("Professor não encontrado");
-           }
+
+    if (!professorEncontrado) {
+        consola.escreverErro("Professor não encontrado");
+    }
+    }
+    
+    public void retirarRegente() {
+        String uc = consola.lerString("Qual a Unidade Curricular:");
+        boolean ucEncontrada = false;
+
+            for (UC b : listaUcs) {
+                if (b.getDesignacaoUC().equals(uc)) {
+                    b.setRegenteUC(null);
+                    ucEncontrada = true;
+                break; //para se encontrar
+                }
+            }
+
+        if (!ucEncontrada) {
+        consola.escreverErro("Unidade Curricular não encontrada");
+        }
+    }
+    
+    public void tornarDiretor() {
+        String nome = consola.lerString("Qual o nome do professor que deseja tornar Diretor:");
+        boolean professorEncontrado = false;
+
+    // Procurar na lista de professores
+        for (Professor a : listaProfessores) {
+            if (a.getNomeProfessor.equals(nome)) {
+                professorEncontrado = true;
+
+                String curso = consola.lerString("Qual o Curso:");
+                boolean cursoEncontrado = false;
+
+            // Verificar se o curso existe e se já tem diretor
+                for (Curso c : listaCursos) {
+                    if (c.getDesignacaoCurso().equals(curso)) {
+                        cursoEncontrado = true;
+
+                    if (c.getDiretorCurso() == null) {
+                        c.setDiretorCurso(nome);
+                    } else {
+                        consola.escreverErro("Este Curso já tem Diretor");
+                    }
+                }
+            }
+
+            if (!cursoEncontrado) {
+                consola.escreverErro("Curso não encontrado");
+            }
+            break;  // Se encontrou o professor, não precisa continuar procurando.
+        }
+    }
+
+        if (!professorEncontrado) {
+            consola.escreverErro("Professor não encontrado");
+        }
+    }
+    
+    public void retirarDiretor() {
+        String curso = consola.lerString("Qual o Curso que deseja remover o Diretor:");
+        boolean cursoEncontrado = false;
+
+    // Procurar na lista de cursos
+        for (Curso c : listaCursos) {
+            if (c.getDesignacaoCurso().equals(curso)) {
+                cursoEncontrado = true;
+
+            if (c.getDiretorCurso() != null) {
+                consola.escrever("Diretor removido do curso: " + c.getDesignacaoCurso());
+                c.setDiretorCurso(null);
+            } else {
+                consola.escreverErro("Este Curso não tem Diretor para remover");
+            }
+
+            break;
+        }
+    }
+
+        if (!cursoEncontrado) {
+            consola.escreverErro("Curso não encontrado");
         }
     }
 
