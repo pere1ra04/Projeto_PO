@@ -127,12 +127,17 @@ public class Consola {
     }
 
     public boolean SoTemNumero(String numero) {
-        for (char n : numero.toCharArray()) {
-            if (!(n >= '0' && n <= '9')) {
+        for (char a : numero.toCharArray()) {
+            if (!(a >= '0' && a <= '9')) {
                 return false;
             }
         }
     
         return true;
     }
+    
+    public String DatadeIniciotoString(int dia, int mes, int ano){
+        return dia + "/" + mes + "/" + ano;
+    }
+    
 }

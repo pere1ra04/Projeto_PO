@@ -21,7 +21,23 @@ public class Sistema {
     public ArrayList<Curso> getListaCursos() {
         return listaCursos;
     }
-
+    
+    public void addProfessor(Professor a){
+        listaProfessores.add(a);
+    }
+    
+    public void removerProfessor(String nome){
+        for(Professor a : listaProfessores){
+            if(a.getNomeProfessor().equals(nome)){
+                listaProfessores.remove(a);
+            }
+        }
+    }
+    
+    public void addCurso(Curso a){
+        listaCursos.add(a);
+    }
+    
     public void ListarCurso(){
         for (Curso a: listaCursos){
             System.out.printf("-> %s\n",a.getDesignacaoCurso());
@@ -80,6 +96,15 @@ public class Sistema {
         }
     }
 }
+    public void ListarProfessores(){
+        for(Professor a: listaProfessores){
+                    System.out.printf("Nome: %s\n", a.getNomeProfessor());
+                    System.out.printf("Numero Mecanografico: %s\n", a.getNMecanoProfessor());
+                    System.out.printf("Data de inicio: %s\n", a.getDataInicio());
+                    System.out.print("\n");
+                }
+            }
+        
     
     
     public void ListarProfessoresPorTodosOsCursos(){

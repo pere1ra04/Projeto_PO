@@ -41,21 +41,21 @@ public class ProjectPO extends Consola {
         String nome = "";
         String numero = "";
         while (count != 3) {
-            nome = consola.lerString("Nome:");
+            nome = consola.lerString("\nNome:");
             if (nome.length() < 1) {
-                consola.escreverErro("O nome deve conter pelo menos 1 Letra.");
+                consola.escreverErro("\nO nome deve conter pelo menos 1 Letra.");
             } else {
                 count = count + 1;
             }
             if (nome.length() >= 100) {
-                consola.escreverErro("O nome deve conter no maximo 100 Letras.");
+                consola.escreverErro("\nO nome deve conter no maximo 100 Letras.");
             } else {
                 count = count + 1;
             }
             if (consola.SoTemLetra(nome)) {
                 count = count + 1;
             } else {
-                consola.escreverErro("O nome deve conter apenas Letras.");
+                consola.escreverErro("\nO nome deve conter apenas Letras.");
             }
             if (count == 3) {
                 break;
@@ -67,19 +67,19 @@ public class ProjectPO extends Consola {
         while (count2 != 3) {
             numero = consola.lerString("Numero Mecanografico:");
             if (numero.length() < 6) {
-                consola.escreverErro("O Numero Mecanografico deve conter pelo menos 1 Digito.");
+                consola.escreverErro("\nO Numero Mecanografico deve conter 6 Digitos.");
             } else {
                 count2 = count2 + 1;
             }
             if (numero.length() > 6) {
-                consola.escreverErro("O Numero Mecanografico deve conter no maximo 6 Digitos.");
+                consola.escreverErro("\nO Numero Mecanografico deve conter 6 Digitos.");
             } else {
                 count2 = count2 + 1;
             }
             if (consola.SoTemNumero(numero)) {
                 count2 = count2 + 1;
             } else {
-                consola.escreverErro("O Numero Mecanografico deve conter apenas Digitos.");
+                consola.escreverErro("\nO Numero Mecanografico deve conter apenas Digitos.");
             }
             if (count2 == 3) {
                 break;
@@ -89,10 +89,10 @@ public class ProjectPO extends Consola {
         }
         if (adm.verificarAdmnistrador(nome, numero)) {
             menuAdministrador();
-        }
+        }else{
         exibirMenuPrincipal();
     }
-
+   }
     public void exibirMenuPrincipal() {
         while (true) {
             consola.converterParaAscii("Gestao de Departamento", 100);
@@ -133,6 +133,7 @@ public class ProjectPO extends Consola {
 
         consola.converterParaAscii("Menu Admistrador", 20);
         int opcao;
+        do{
         String[] opcoes = {
             "Informações de Professores",
             "Informações de Cursos",
@@ -161,25 +162,30 @@ public class ProjectPO extends Consola {
                 break;
 
         }
-    }
+    }while(opcao!=4);
+}
     
     public void menuINFprofs(){
         int opcao;
+        do{
                 String[] opcoes = {
                   "Adicionar Professor",
                   "Apagar Professor",
                   "Alterar Informações de Professor",
+                  "Listar todos os Professores",
                   "Voltar",};
-                consola.escrever("Introduza a opção pretendida:");
+                consola.escrever("\nIntroduza a opção pretendida:");
+                
                 
                 opcao = consola.lerInteiros(opcoes);
                 switch(opcao){
                     case 1:
-                        
+                        criarProfessor();
                     break;
                     
                     case 2:
-                        
+                        String RMVstor = consola.lerString("Digite o nome do Professor a ser apagado do Sistema:");
+                        sistema.removerProfessor(RMVstor);
                     break;
                     
                     case 3:
@@ -187,13 +193,16 @@ public class ProjectPO extends Consola {
                     break;
                     
                     case 4:
-                        menuAdministrador();
+                        sistema.ListarProfessores();
                     break;
+
                 }
+        }while(opcao!=5);
     }
     
     public void menuINFcursos(){
         int opcao;
+        do{
                 String[] opcoes = {
                   "Adicionar Curso",
                   "Apagar Curso",
@@ -214,15 +223,13 @@ public class ProjectPO extends Consola {
                     case 3:
                         
                     break;
-                    
-                    case 4:
-                        menuAdministrador();
-                    break;
                 }
+        }while(opcao!=4);
     }
     
     public void menuINFuc(){
         int opcao;
+        do{
                 String[] opcoes = {
                   "Adicionar Unidade Curricular",
                   "Apagar Unidade Curricular",
@@ -243,25 +250,15 @@ public class ProjectPO extends Consola {
                     case 3:
                         
                     break;
-                    
-                    case 4:
-                        menuAdministrador();
-                    break;
                 }
+        }while(opcao!=4);
     }
     
-    
-    
-    
-    
-    
-    
-    
-
     public void menuProfessores() {
 
         consola.converterParaAscii("Menu Professor", 20);
         int opcao;
+        do{
         String[] opcoes = {
             "Criar Sumario",
             "Consultar lista de sumários por UC e por tipo de aula.",
@@ -285,17 +282,15 @@ public class ProjectPO extends Consola {
             case 3:
                 //info
                 break;
-
-            case 4:
-                //info
-                break;
         }
+      }while(opcao!=4);
     }
 
     public void menuRegente() {
 
         consola.converterParaAscii("Menu Regente da UC: ", 20); //ADICIONAR O NOME DA UC POR REFERNCIA
         int opcao;
+        do{
         String[] opcoes = {
             "Adicionar Aluno",
             "Remover Aluno",
@@ -317,18 +312,15 @@ public class ProjectPO extends Consola {
             case 3:
                 //info
                 break;
-
-            case 0:
-                //info
-                break;
-
         }
+      }while(opcao!=4);
     }
 
     public void menuDiretorCurso() {
 
         consola.converterParaAscii("Menu Diretor de Curso    : ", 20); //ADICIONAR O NOME Do curso POR REFERNCIA
         int opcao;
+        do{
         String[] opcoes = {
             "Alterar Designação do Curso",
             "Listar Alunos",
@@ -347,21 +339,17 @@ public class ProjectPO extends Consola {
 
             case 2:
                 String nomedocurso = consola.lerString("Nome do Curso:");
-                Sistema.NumeroAlunosCurso(nomedocurso);
+//                Sistema.NumeroAlunosCurso(nomedocurso);
                 //depois têm que se mudar de forma com que o diretor só liste do seu curso
                 break;
 
             case 3:
                 String nomedocurso2 = consola.lerString("Nome do Curso:");
-                Sistema.ListarProfessoresPorCurso(nomedocurso2);
+  //              Sistema.ListarProfessoresPorCurso(nomedocurso2);
                 //depois têm que se mudar de forma com que o diretor só liste do seu curso
                 break;
-
-            case 4:
-                //info
-                break;
-
         }
+      }while(opcao!=4);
     }
 
     //Funções CRIAR
@@ -378,18 +366,110 @@ public class ProjectPO extends Consola {
 
         UC uc = new UC(designacaoUC, regenteUC);
     }
-
+    
     public void criarProfessor() {
-        String nomeProfessor = consola.lerString("Nome:");
-        String nMecanoProfessor = consola.lerString("Número Mecanográfico:");
-        String dataInicio = consola.lerString("Data de inicio de Funções:");
+        int count=0, count2=0, count3=0;
+        String nomeProfessor = "";
+        String nMecanoProfessor = "";
+        int dia=0, mes=0, ano=0;
+        double a;
+        while (count != 3) {
+            nomeProfessor = consola.lerString("Nome:");
+            if (nomeProfessor.length() < 1) {
+                consola.escreverErro("\nO nome deve conter pelo menos 1 Letra.");
+            } else {
+                count = count + 1;
+            }
+            if (nomeProfessor.length() >= 100) {
+                consola.escreverErro("\nO nome deve conter no maximo 100 Letras.");
+            } else {
+                count = count + 1;
+            }
+            if (consola.SoTemLetra(nomeProfessor)) {
+                count = count + 1;
+            } else {
+                consola.escreverErro("\nO nome deve conter apenas Letras.");
+            }
+            if (count == 3) {
+                break;
+            } else {
+                count = 0;
+            }
+        }
+        while (count2 != 3) {
+            nMecanoProfessor = consola.lerString("Número Mecanográfico:");
+            if (nMecanoProfessor.length() < 6) {
+                consola.escreverErro("\nO Numero Mecanografico deve conter 6 Digitos.");
+            } else {
+                count2 = count2 + 1;
+            }
+            if (nMecanoProfessor.length() > 6) {
+                consola.escreverErro("\nO Numero Mecanografico deve conter 6 Digitos.");
+            } else {
+                count2 = count2 + 1;
+            }
+            if (consola.SoTemNumero(nMecanoProfessor)) {
+                count2 = count2 + 1;
+            } else {
+                consola.escreverErro("\nO Numero Mecanografico deve conter apenas Digitos.");
+            }
+            if (count2 == 3) {
+                break;
+            } else {
+                count2 = 0;
+            }
+        }
+        while(count3!=3){
+            consola.escrever("Data de inicio de Funções:");
+            ano = consola.lerInteiro("Digite o Ano em que começou:");
+            if(ano<1 || ano>2024){
+                consola.escreverErro("\nO Ano deve estar Compreendido entre 1 e 2024.");
+            }else{
+            a = ano % 4;
+            count3 = count3 + 1;
+            mes = consola.lerInteiro("Digite o Mês em que começou:");
+            if(mes<1 || mes>12){
+                consola.escreverErro("\nO Mês deve estar Compreendido entre 1 e 12.");
+            }else{
+                count3 = count3 + 1;
+                dia = consola.lerInteiro("Digite o Dia em que começou:");
+                if(mes == 1 ||  mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
+                    if(dia<1 || dia>31){
+                        consola.escreverErro("\nO Dia deve estar Compreendido entre 1 e 31.");
+                    }else{
+                        count3 = count3 + 1;
+                    }
+                }else if(mes == 2 && a == 0){
+                    if(dia<1 || dia>29){
+                        consola.escreverErro("\nO Dia deve estar Compreendido entre 1 e 29.");
+                    }else{
+                        count3 = count3 + 1;
+                    }
+                }else if(mes == 2 && a != 0){
+                    if(dia<1 || dia>28){
+                        consola.escreverErro("\nO Dia deve estar Compreendido entre 1 e 28.");
+                    }else{
+                        count3 = count3 + 1;
+                        }
+                    }
+                }
+            }
+            if (count3 == 3) {
+                break;
+            } else {
+                count3 = 0;
+            }
+        }       
+        
+        String dataInicio = consola.DatadeIniciotoString(dia, mes, ano);
         //ArrayList<UC> ListaUCs = new ArrayList<>();
         //ArrayList<Sumario> ListaSumarios = new ArrayList<>();
 
         Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio/*,ListaUCs,ListaSumarios*/);
+        sistema.addProfessor(professor);
     }
     
-    public void tornarRegente() {
+  /*  public void tornarRegente() {
         String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
         boolean professorEncontrado = false;
 
@@ -442,8 +522,8 @@ public class ProjectPO extends Consola {
         consola.escreverErro("Unidade Curricular não encontrada");
         }
     }
-    
-    public void tornarDiretor() {
+    */
+   /* public void tornarDiretor() {
         String nome = consola.lerString("Qual o nome do professor que deseja tornar Diretor:");
         boolean professorEncontrado = false;
 
@@ -504,7 +584,7 @@ public class ProjectPO extends Consola {
             consola.escreverErro("Curso não encontrado");
         }
     }
-
+*/
     public void criarSumario() {
 
         String titulo = consola.lerString("Titulo:");
@@ -515,6 +595,7 @@ public class ProjectPO extends Consola {
         //ArrayList<Aluno> presencas =  new ArrayList<>();
 
         Sumario sumario = new Sumario(titulo, tipo, uc, textoSumario, data_hora/*,presencas*/);
+        
     }
 
     public void criarAluno() {
@@ -531,8 +612,8 @@ public class ProjectPO extends Consola {
             "Alterar Nome ",
             "Alterar Numero Mecanografico",
             "Alterar Data de Inicio",
-            "Atribuir Serviço Docente"
-            "Remover Serviço Docente"
+            "Atribuir Serviço Docente",
+            "Remover Serviço Docente",
             "Voltar",};
         consola.escrever("Introduza a opção pretendida");
         opcao = consola.lerInteiros(opcoes);

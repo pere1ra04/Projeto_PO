@@ -23,7 +23,7 @@ public class Professor implements Serializable {
         setNMecanoProfessor(nmecano);
         setDataInicio(dataInicio);
         setListaUCs(listaUC);
-        setListaSumarios(listaSumarios); 
+        setListaSumarios(listaSumarios);
     }
     
     public Professor(String nome, String nmecano, String dataInicio) {
@@ -32,7 +32,31 @@ public class Professor implements Serializable {
         setDataInicio(dataInicio);
 
     }
-
+    
+    public void addUC(UC a){
+        listaUCs.add(a);
+    }
+    
+    public void removerUC(String designacao){
+        for(UC a : listaUCs){
+            if(a.getDesignacaoUC().equals(designacao)){
+                listaUCs.remove(a);
+            }
+        }
+    }
+    
+    public void addSumario(Sumario a){
+        listaSumarios.add(a);
+    }
+    
+    public void removerSumario(String titulo){
+        for(Sumario a : listaSumarios){
+            if(a.getTitulo().equals(titulo)){
+                listaSumarios.remove(a);
+            }
+        }
+    }
+    
     public String getNomeProfessor() {
         return nomeProfessor;
     }
