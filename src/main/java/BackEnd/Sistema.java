@@ -44,6 +44,14 @@ public class Sistema {
         }
     }
     
+    public void removerCurso(String designacao){
+        for(Curso a : listaCursos){
+            if(a.getDesignacaoCurso().equals(designacao)){
+                listaCursos.remove(a);
+            }
+        }
+    }
+    
     public void ListarUCs(){
         for (Curso a: listaCursos){
             for(UC b : a.getListaUCs()){
@@ -187,11 +195,6 @@ public class Sistema {
         return listaProfessores;
     }
     
-    public void ListarProfessors(){
-        for (Professor a: listaProfessores){
-            System.out.printf("-> %s\n",a.getNomeProfessor());
-        }
-    }
     
     /*public boolean verificarExistenciaUCs(ArrayList<String> ucsEscritas, ListaUCs listaUCsExistente) {
         ArrayList<String> ucsExistente = listaUCsExistente.getUCs();
@@ -212,8 +215,8 @@ public class Sistema {
 
 
 // Função para salvar o estado do Sistema em um arquivo
-    public void salvarEstado(String nomeArquivo) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+    public void salvarEstado() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("estado"))) {
             oos.writeObject(listaCursos);
             oos.writeObject(listaProfessores);
         } catch (IOException e) {
@@ -222,8 +225,8 @@ public class Sistema {
     }
     
     // Função para carregar o estado do Sistema a partir de um arquivo
-    public void carregarEstado(String nomeArquivo) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+    public void carregarEstado() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("estado"))) {
             listaCursos = (ArrayList<Curso>) ois.readObject();
             listaProfessores = (ArrayList<Professor>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {

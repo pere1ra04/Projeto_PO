@@ -35,7 +35,7 @@ public class ProjectPO extends Consola {
     }
 
     public void login() {
-
+        sistema.carregarEstado();
         consola.converterParaAscii("Login:", 100);
         int count = 0;
         String nome = "";
@@ -91,7 +91,7 @@ public class ProjectPO extends Consola {
             menuAdministrador();
         }else{
         exibirMenuPrincipal();
-    }
+        }
    }
     public void exibirMenuPrincipal() {
         while (true) {
@@ -122,6 +122,7 @@ public class ProjectPO extends Consola {
                     break;
                 case 4:
                     consola.escrever("Saindo do programa. Até mais!");
+                    sistema.salvarEstado();
                     System.exit(0);
                     break;
 
@@ -158,6 +159,7 @@ public class ProjectPO extends Consola {
 
             case 4:
                 consola.escrever("Saindo do programa. Até mais!");
+                sistema.salvarEstado();
                 System.exit(0);
                 break;
 
@@ -207,24 +209,30 @@ public class ProjectPO extends Consola {
                   "Adicionar Curso",
                   "Apagar Curso",
                   "Alterar Informações do Curso",
+                  "Listar Cursos",
                   "Voltar",};
                 consola.escrever("Introduza a opção pretendida:");
                 
                 opcao = consola.lerInteiros(opcoes);
                 switch(opcao){
                     case 1:
-                        
+                        criarCurso();
                     break;
                     
                     case 2:
-                        
+                        String RMVcurso = consola.lerString("Digite o nome do Curso a ser apagado do Sistema:");
+                        sistema.removerCurso(RMVcurso);
                     break;
                     
                     case 3:
                         
                     break;
+                    
+                    case 4:
+                        sistema.ListarCurso();
+                    break;
                 }
-        }while(opcao!=4);
+        }while(opcao!=5);
     }
     
     public void menuINFuc(){
@@ -234,13 +242,14 @@ public class ProjectPO extends Consola {
                   "Adicionar Unidade Curricular",
                   "Apagar Unidade Curricular",
                   "Alterar Informações da Unidade Curricular",
+                  "Listar Unidade Curriculares",
                   "Voltar",};
                 consola.escrever("Introduza a opção pretendida:");
                 
                 opcao = consola.lerInteiros(opcoes);
                 switch(opcao){
                     case 1:
-                        
+                        criarUc();
                     break;
                     
                     case 2:
@@ -250,8 +259,12 @@ public class ProjectPO extends Consola {
                     case 3:
                         
                     break;
+                    
+                    case 4:
+                        sistema.ListarUCs();
+                    break;
                 }
-        }while(opcao!=4);
+        }while(opcao!=5);
     }
     
     public void menuProfessores() {
@@ -302,6 +315,7 @@ public class ProjectPO extends Consola {
         opcao = consola.lerInteiros(opcoes);
         switch (opcao) {
             case 1:
+                criarAluno();
                 //info
                 break;
 
@@ -358,6 +372,7 @@ public class ProjectPO extends Consola {
         String diretorCurso = consola.lerString("Regente UC:");
 
         Curso curso = new Curso(designacaoCurso, diretorCurso);
+        sistema.addCurso(curso);
     }
 
     public void criarUc() {
@@ -451,9 +466,15 @@ public class ProjectPO extends Consola {
                     }else{
                         count3 = count3 + 1;
                         }
+                    }else{
+                    if(dia<1 || dia>30){
+                        consola.escreverErro("\nO Dia deve estar Compreendido entre 1 e 30.");
+                    }else{
+                        count3 = count3 + 1;
                     }
                 }
             }
+        }
             if (count3 == 3) {
                 break;
             } else {
