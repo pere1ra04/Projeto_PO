@@ -500,8 +500,12 @@ public class ProjectPO extends Consola {
         Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio/*,ListaUCs,ListaSumarios*/);
         sistema.addProfessor(professor);
     }
+<<<<<<< HEAD
     
 <<<<<<< Updated upstream
+=======
+   /* 
+>>>>>>> 0900c216d983b2d0860c5d32060962a3cd39903f
    public void tornarRegente() {
 =======
     public void tornarRegente() {
@@ -618,8 +622,8 @@ public class ProjectPO extends Consola {
 
         if (!cursoEncontrado) {
             consola.escreverErro("Curso não encontrado");
-        }*/
-    }
+        }
+    }*/
 
     public void criarSumario() {
 
