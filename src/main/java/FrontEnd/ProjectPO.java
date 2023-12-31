@@ -11,8 +11,6 @@ import BackEnd.Aluno;
 import BackEnd.Curso;
 import BackEnd.Sumario;
 import BackEnd.UC;
-import java.util.Scanner;
-import java.awt.Font;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
