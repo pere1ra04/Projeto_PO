@@ -104,6 +104,8 @@ public class Sistema {
         }
     }
 }
+    
+    
     public void ListarProfessores(){
         for(Professor a: listaProfessores){
                     System.out.printf("Nome: %s\n", a.getNomeProfessor());
@@ -206,7 +208,144 @@ public class Sistema {
         // Todas as UCs existem na lista, retornar true
         return false;
     }
+    public void removerUcs(String uc){
+        boolean ucEncontrada = false;
+            for(Professor a: listaProfessores){
+            for (UC b : a.getListaUCs()) {
+                if (b.getDesignacaoUC().equals(uc)) {
+                    a.removerUC(uc);
+                    ucEncontrada = true;
+                break; //para se encontrar
+                }
+            }
+            }
+        if (!ucEncontrada) {
+            System.out.println("Unidade Curricular não encontrada");
+        }
+    }
+    public void alterarINFucs(String uc, String novaDesignacao, ArrayList novaEquipaDocente){
+        boolean ucEncontrada = false;
+            for(Professor a: listaProfessores){
+            for (UC b : a.getListaUCs()) {
+                if (b.getDesignacaoUC().equals(uc)) {
+                    b.setDesignacaoUC(novaDesignacao);
+                    b.setEquipaDocente(novaEquipaDocente);
+                    ucEncontrada = true;
+                break; //para se encontrar
+                }
+            }
+            }
+        if (!ucEncontrada) {
+            System.out.println("Unidade Curricular não encontrada");
+        }
+    }
     
+    public void tornarRegente(String nome, String uc){
+       boolean professorEncontrado = false;
+       boolean ucEncontrada = false;
+        for (Professor a : listaProfessores) {
+            if (a.getNomeProfessor().equals(nome)) {
+                professorEncontrado = true;
+
+            // Verificar se a UC existe e se já tem regente
+            for (UC b : a.getListaUCs()) {
+                if (b.getDesignacaoUC().equals(uc)) {
+                    ucEncontrada = true;
+
+                    if (b.getRegenteUC() == null) {
+                        b.setRegenteUC(nome);
+                    } else {
+                        System.out.println("Esta Unidade Curricular já tem Regente");
+                    }
+                }
+            }
+
+            if (!ucEncontrada) {
+                System.out.println("Unidade Curricular não encontrada");
+            }
+            break; 
+            }
+            if (!professorEncontrado) {
+                System.out.println("Professor não encontrado");
+            }
+        }
+    }
+    
+    public void tirarRegente(String uc){
+        boolean ucEncontrada = false;
+            for(Professor a: listaProfessores){
+            for (UC b : a.getListaUCs()) {
+                if (b.getDesignacaoUC().equals(uc)) {
+                    b.setRegenteUC(null);
+                    ucEncontrada = true;
+                break; //para se encontrar
+                }
+            }
+            }
+        if (!ucEncontrada) {
+        System.out.println("Unidade Curricular não encontrada");
+        }
+    }
+    
+    
+    
+    
+    public void alterarINFcurso(String curso){
+        
+    }
+    
+    public void tornarDiretorCurso(String nome, String curso){
+        boolean professorEncontrado = false;
+        
+        for (Professor a : listaProfessores) {
+            if (a.getNomeProfessor().equals(nome)) {
+                professorEncontrado = true;
+
+                boolean cursoEncontrado = false;
+
+            // Verificar se o curso existe e se já tem diretor
+                for (Curso c : listaCursos) {
+                    if (c.getDesignacaoCurso().equals(curso)) {
+                        cursoEncontrado = true;
+
+                    if (c.getDiretorCurso() == null) {
+                        c.setDiretorCurso(nome);
+                    } else {
+                        System.out.println("Este Curso já tem Diretor");
+                    }
+                }
+            }
+
+            if (!cursoEncontrado) {
+                System.out.println("Curso não encontrado");
+            }
+            break;  // Se encontrou o professor, não precisa continuar procurando.
+            }
+        }
+        if (!professorEncontrado) {
+            System.out.println("Professor não encontrado");
+        }
+    }    
+    public void tirarDiretorCurso(String curso){
+            boolean cursoEncontrado = false;
+        for (Curso c : listaCursos) {
+            if (c.getDesignacaoCurso().equals(curso)) {
+                cursoEncontrado = true;
+            if (c.getDiretorCurso() != null) {
+                System.out.println("Diretor removido do curso: " + c.getDesignacaoCurso());
+                c.setDiretorCurso(null);
+            } else {
+                System.out.println("Este Curso não tem Diretor para remover");
+            }
+            break;
+            }
+        }
+
+        if (!cursoEncontrado) {
+            System.out.println("Curso não encontrado");
+        }
+    }
+
 
 
 

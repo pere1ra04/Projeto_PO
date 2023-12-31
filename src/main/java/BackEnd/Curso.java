@@ -69,6 +69,7 @@ public class Curso implements Serializable {
     public void removerAlunoCurso(Aluno a) {
         listaAlunos.remove(a);
     }
+    
 
     @Override
     public String toString() {

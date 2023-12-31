@@ -12,10 +12,7 @@ import BackEnd.Curso;
 import BackEnd.Sumario;
 import BackEnd.UC;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -33,13 +30,13 @@ public class ProjectPO extends Consola {
     }
 
     public void login() {
-<<<<<<< Updated upstream
+
         //sistema.carregarEstado();
-        consola.converterParaAscii("Login:", 100);
-=======
+        consola.converterParaAscii("Login:");
+
 
         consola.converterParaAscii("LOGIN:");
->>>>>>> Stashed changes
+
         int count = 0;
         String nome = "";
         String numero = "";
@@ -121,9 +118,6 @@ public class ProjectPO extends Consola {
                     menuRegente();
                     break;
                 case 3:
-                    for(Curso c: listaCursos){
-                        
-                    }
                     menuDiretorCurso();
                     break;
                 case 4:
@@ -197,11 +191,12 @@ public class ProjectPO extends Consola {
                     break;
                     
                     case 3:
-                        
+                        String ALTstor = consola.lerString("Digite o nome do Professor a ser alterado:");
+                        //alterarInformacoesProfessor(ALTstor);
                     break;
                     
                     case 4:
-                       // sistema.ListarProfessores();
+                       //sistema.ListarProfessores();
                     break;
 
                 }
@@ -215,6 +210,8 @@ public class ProjectPO extends Consola {
                   "Adicionar Curso",
                   "Apagar Curso",
                   "Alterar Informações do Curso",
+                  "Tornar Diretor de Curso",
+                  "Eliminar Cargo de Diretor de Curso",
                   "Listar Cursos",
                   "Voltar",};
                 consola.escrever("Introduza a opção pretendida:");
@@ -231,10 +228,22 @@ public class ProjectPO extends Consola {
                     break;
                     
                     case 3:
-                        
+                        String ALTcurso = consola.lerString("Digite o nome do Curso a ser alterado:");
+                        sistema.alterarINFcurso(ALTcurso);
                     break;
                     
                     case 4:
+                        String nomeProf = consola.lerString("Digite o nome do Professor que deseja tornar Diretor de Curso:");
+                        String nomeCurso = consola.lerString("Digite o nome do Curso:");
+                        sistema.tornarDiretorCurso(nomeProf, nomeCurso);
+                    break;
+                    
+                    case 5:
+                        String nome = consola.lerString("Digite o nome do Curso que deseja tirar o seu diretor:");
+                        sistema.tirarDiretorCurso(nome);
+                    break;
+                    
+                    case 6:
                         sistema.ListarCurso();
                     break;
                 }
@@ -248,6 +257,8 @@ public class ProjectPO extends Consola {
                   "Adicionar Unidade Curricular",
                   "Apagar Unidade Curricular",
                   "Alterar Informações da Unidade Curricular",
+                  "Tornar Regente UC",
+                  "Eliminar Cargo de Regente",
                   "Listar Unidade Curriculares",
                   "Voltar",};
                 consola.escrever("Introduza a opção pretendida:");
@@ -259,14 +270,29 @@ public class ProjectPO extends Consola {
                     break;
                     
                     case 2:
-                        
+                        String Uc = consola.lerString("Qual o nome da uc que deseja remover:");
+                        sistema.removerUcs(Uc);
                     break;
                     
                     case 3:
-                        
+                        String uc = consola.lerString("Qual o nome da uc que deseja alterar:");
+                        String novaDesignacao = consola.lerString("Nova Designação:");
+                        ArrayList novaEquipaDocente = new ArrayList();
+                        sistema.alterarINFucs(uc,novaDesignacao,novaEquipaDocente);
                     break;
                     
                     case 4:
+                        String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
+                        String uc1 = consola.lerString("Qual a Unidade Curricular: ");
+                        sistema.tornarRegente(nome,uc1);
+                    break;
+                    
+                    case 5:
+                        String uc2 = consola.lerString("Qual a Unidade Curricular: ");
+                        sistema.tirarRegente(uc2);
+                    break;
+                    
+                    case 6:
                         sistema.ListarUCs();
                     break;
                 }
@@ -500,132 +526,10 @@ public class ProjectPO extends Consola {
         Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio/*,ListaUCs,ListaSumarios*/);
         sistema.addProfessor(professor);
     }
-<<<<<<< HEAD
     
-<<<<<<< Updated upstream
-=======
-   /* 
->>>>>>> 0900c216d983b2d0860c5d32060962a3cd39903f
-   public void tornarRegente() {
-=======
-    public void tornarRegente() {
->>>>>>> Stashed changes
-        String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
-        boolean professorEncontrado = false;
-
-    // Procurar na lista de professores
-   /* for (Professor a : listaProfessores) {
-        if (a.getNomeProfessor().equals(nome)) {
-            professorEncontrado = true;
-
-            String uc = consola.lerString("Qual a Unidade Curricular:");
-            boolean ucEncontrada = false;
-
-            // Verificar se a UC existe e se já tem regente
-            for (UC b : listaUcs) {
-                if (b.getDesignacaoUC().equals(uc)) {
-                    ucEncontrada = true;
-
-                    if (b.getRegenteUC() == null) {
-                        b.setRegenteUC(nome);
-                    } else {
-                        consola.escreverErro("Esta Unidade Curricular já tem Regente");
-                    }
-                }
-            }
-
-            if (!ucEncontrada) {
-                consola.escreverErro("Unidade Curricular não encontrada");
-            }
-            break; 
-        }
-    }
-
-    if (!professorEncontrado) {
-        consola.escreverErro("Professor não encontrado");
-    }
-    }
     
-    public void retirarRegente() {
-        String uc = consola.lerString("Qual a Unidade Curricular:");
-        boolean ucEncontrada = false;
 
-            for (UC b : listaUcs) {
-                if (b.getDesignacaoUC().equals(uc)) {
-                    b.setRegenteUC(null);
-                    ucEncontrada = true;
-                break; //para se encontrar
-                }
-            }
-
-        if (!ucEncontrada) {
-        consola.escreverErro("Unidade Curricular não encontrada");
-        }
-    }
-    
-    public void tornarDiretor() {
-        String nome = consola.lerString("Qual o nome do professor que deseja tornar Diretor:");
-        boolean professorEncontrado = false;
-
-    // Procurar na lista de professores
-        for (Professor a : listaProfessores) {
-            if (a.getNomeProfessor.equals(nome)) {
-                professorEncontrado = true;
-
-                String curso = consola.lerString("Qual o Curso:");
-                boolean cursoEncontrado = false;
-
-            // Verificar se o curso existe e se já tem diretor
-                for (Curso c : listaCursos) {
-                    if (c.getDesignacaoCurso().equals(curso)) {
-                        cursoEncontrado = true;
-
-                    if (c.getDiretorCurso() == null) {
-                        c.setDiretorCurso(nome);
-                    } else {
-                        consola.escreverErro("Este Curso já tem Diretor");
-                    }
-                }
-            }
-
-            if (!cursoEncontrado) {
-                consola.escreverErro("Curso não encontrado");
-            }
-            break;  // Se encontrou o professor, não precisa continuar procurando.
-        }
-    }
-
-        if (!professorEncontrado) {
-            consola.escreverErro("Professor não encontrado");
-        }
-    }
-    
-    public void retirarDiretor() {
-        String curso = consola.lerString("Qual o Curso que deseja remover o Diretor:");
-        boolean cursoEncontrado = false;
-
-    // Procurar na lista de cursos
-        for (Curso c : listaCursos) {
-            if (c.getDesignacaoCurso().equals(curso)) {
-                cursoEncontrado = true;
-
-            if (c.getDiretorCurso() != null) {
-                consola.escrever("Diretor removido do curso: " + c.getDesignacaoCurso());
-                c.setDiretorCurso(null);
-            } else {
-                consola.escreverErro("Este Curso não tem Diretor para remover");
-            }
-
-            break;
-        }
-    }
-
-        if (!cursoEncontrado) {
-            consola.escreverErro("Curso não encontrado");
-        }
-    }*/
-
-    public void criarSumario() {
+    public void criarSumario(){
 
         String titulo = consola.lerString("Titulo:");
         String tipo = consola.lerString("Tipo de Sumario");
