@@ -6,6 +6,7 @@ package FrontEnd;
 
 import BackEnd.Sistema;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -100,8 +101,7 @@ public class Consola {
         return data;
     }
     
-    public static void converterParaAscii(String texto, int tamanhoFonte){
-        Font fonte = new Font("Lato", Font.PLAIN, tamanhoFonte);
+    public static void converterParaAscii(String texto) {
         for (int i = 0; i < texto.length(); i++) {
             char caractere = texto.charAt(i);
             int valorAscii = (int) caractere;
@@ -140,4 +140,7 @@ public class Consola {
         return dia + "/" + mes + "/" + ano;
     }
     
+    
 }
+
+

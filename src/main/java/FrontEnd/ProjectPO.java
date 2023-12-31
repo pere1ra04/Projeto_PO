@@ -33,8 +33,13 @@ public class ProjectPO extends Consola {
     }
 
     public void login() {
+<<<<<<< Updated upstream
         //sistema.carregarEstado();
         consola.converterParaAscii("Login:", 100);
+=======
+
+        consola.converterParaAscii("LOGIN:");
+>>>>>>> Stashed changes
         int count = 0;
         String nome = "";
         String numero = "";
@@ -93,7 +98,7 @@ public class ProjectPO extends Consola {
    }
     public void exibirMenuPrincipal() {
         while (true) {
-            consola.converterParaAscii("Gestao de Departamento", 100);
+            consola.converterParaAscii("Gestao de Departamento");
             consola.escrever("\n----- Menu Principal -----");
 
             int opcao;
@@ -116,6 +121,9 @@ public class ProjectPO extends Consola {
                     menuRegente();
                     break;
                 case 3:
+                    for(Curso c: listaCursos){
+                        
+                    }
                     menuDiretorCurso();
                     break;
                 case 4:
@@ -130,7 +138,7 @@ public class ProjectPO extends Consola {
 
     public void menuAdministrador() {
 
-        consola.converterParaAscii("Menu Admistrador", 20);
+        consola.converterParaAscii("Menu Admistrador");
         int opcao;
         do{
         String[] opcoes = {
@@ -267,7 +275,7 @@ public class ProjectPO extends Consola {
     
     public void menuProfessores() {
 
-        consola.converterParaAscii("Menu Professor", 20);
+        consola.converterParaAscii("Menu Professor");
         int opcao;
         do{
         String[] opcoes = {
@@ -299,7 +307,7 @@ public class ProjectPO extends Consola {
 
     public void menuRegente() {
 
-        consola.converterParaAscii("Menu Regente da UC: ", 20); //ADICIONAR O NOME DA UC POR REFERNCIA
+        consola.converterParaAscii("Menu Regente da UC: "); //ADICIONAR O NOME DA UC POR REFERNCIA
         int opcao;
         do{
         String[] opcoes = {
@@ -330,7 +338,7 @@ public class ProjectPO extends Consola {
 
     public void menuDiretorCurso() {
 
-        consola.converterParaAscii("Menu Diretor de Curso    : ", 20); //ADICIONAR O NOME Do curso POR REFERNCIA
+        consola.converterParaAscii("Menu Diretor de Curso    : "); //ADICIONAR O NOME Do curso POR REFERNCIA
         int opcao;
         do{
         String[] opcoes = {
@@ -493,7 +501,11 @@ public class ProjectPO extends Consola {
         sistema.addProfessor(professor);
     }
     
+<<<<<<< Updated upstream
    public void tornarRegente() {
+=======
+    public void tornarRegente() {
+>>>>>>> Stashed changes
         String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
         boolean professorEncontrado = false;
 
