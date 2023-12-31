@@ -494,7 +494,7 @@ public class ProjectPO extends Consola {
         Professor professor = new Professor(nomeProfessor, nMecanoProfessor, dataInicio/*,ListaUCs,ListaSumarios*/);
         sistema.addProfessor(professor);
     }
-    
+   /* 
    public void tornarRegente() {
         String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
         boolean professorEncontrado = false;
@@ -608,8 +608,8 @@ public class ProjectPO extends Consola {
 
         if (!cursoEncontrado) {
             consola.escreverErro("Curso não encontrado");
-        }*/
-    }
+        }
+    }*/
 
     public void criarSumario() {
 
