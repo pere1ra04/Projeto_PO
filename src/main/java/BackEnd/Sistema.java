@@ -196,19 +196,16 @@ public class Sistema {
     }
     
     
-    /*public boolean verificarExistenciaUCs(ArrayList<String> ucsEscritas, ListaUCs listaUCsExistente) {
-        ArrayList<String> ucsExistente = listaUCsExistente.getUCs();
-
-        for (String ucInput : ucsEscritas) {
-            if (!ucsExistente.contains(ucInput)) {
-                // Se alguma UC não existir na lista, retornar false
-                return false;
+    public boolean verificarExistenciadeNumeroMecanog(String mecanog) {
+        for (Professor a : listaProfessores) {
+            if (a.getNMecanoProfessor().equals(mecanog)) {
+                return true;
             }
         }
 
         // Todas as UCs existem na lista, retornar true
-        return true;
-    } */
+        return false;
+    }
     
 
 
@@ -233,7 +230,6 @@ public class Sistema {
             e.printStackTrace();
         }
     }
-    
     
     
     

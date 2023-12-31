@@ -35,7 +35,7 @@ public class ProjectPO extends Consola {
     }
 
     public void login() {
-        sistema.carregarEstado();
+        //sistema.carregarEstado();
         consola.converterParaAscii("Login:", 100);
         int count = 0;
         String nome = "";
@@ -159,7 +159,7 @@ public class ProjectPO extends Consola {
 
             case 4:
                 consola.escrever("Saindo do programa. Até mais!");
-                sistema.salvarEstado();
+                //sistema.salvarEstado();
                 System.exit(0);
                 break;
 
@@ -195,7 +195,7 @@ public class ProjectPO extends Consola {
                     break;
                     
                     case 4:
-                        sistema.ListarProfessores();
+                       // sistema.ListarProfessores();
                     break;
 
                 }
@@ -411,7 +411,7 @@ public class ProjectPO extends Consola {
                 count = 0;
             }
         }
-        while (count2 != 3) {
+        while (count2 != 4) {
             nMecanoProfessor = consola.lerString("Número Mecanográfico:");
             if (nMecanoProfessor.length() < 6) {
                 consola.escreverErro("\nO Numero Mecanografico deve conter 6 Digitos.");
@@ -428,7 +428,12 @@ public class ProjectPO extends Consola {
             } else {
                 consola.escreverErro("\nO Numero Mecanografico deve conter apenas Digitos.");
             }
-            if (count2 == 3) {
+            if(sistema.verificarExistenciadeNumeroMecanog(nMecanoProfessor)){
+                consola.escreverErro("\nEste Numero Mecanografico já existe.");
+            } else {
+                count2 = count2 + 1;
+            }
+            if (count2 == 4) {
                 break;
             } else {
                 count2 = 0;
@@ -490,12 +495,12 @@ public class ProjectPO extends Consola {
         sistema.addProfessor(professor);
     }
     
-  /*  public void tornarRegente() {
+   public void tornarRegente() {
         String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
         boolean professorEncontrado = false;
 
     // Procurar na lista de professores
-    for (Professor a : listaProfessores) {
+   /* for (Professor a : listaProfessores) {
         if (a.getNomeProfessor().equals(nome)) {
             professorEncontrado = true;
 
@@ -543,8 +548,8 @@ public class ProjectPO extends Consola {
         consola.escreverErro("Unidade Curricular não encontrada");
         }
     }
-    */
-   /* public void tornarDiretor() {
+    
+    public void tornarDiretor() {
         String nome = consola.lerString("Qual o nome do professor que deseja tornar Diretor:");
         boolean professorEncontrado = false;
 
@@ -603,9 +608,9 @@ public class ProjectPO extends Consola {
 
         if (!cursoEncontrado) {
             consola.escreverErro("Curso não encontrado");
-        }
+        }*/
     }
-*/
+
     public void criarSumario() {
 
         String titulo = consola.lerString("Titulo:");
@@ -625,6 +630,7 @@ public class ProjectPO extends Consola {
         String curso = consola.lerString("Curso: ");
 
         Aluno aluno = new Aluno(nomeAluno, nMecanoAluno, curso);
+        
     }
 
     public void alterarInformacoesProfessor(Professor a) {
