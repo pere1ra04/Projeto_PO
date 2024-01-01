@@ -22,6 +22,54 @@ public class Sistema {
         return listaCursos;
     }
     
+    public boolean verificarDiretor(Professor a){
+        for(Curso b : listaCursos){
+            if(b.getDiretorCurso().equals(a.getNMecanoProfessor())){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean verificarDiretorCurso(Professor a,Curso b){
+        if(b.getDiretorCurso().equals(a.getNMecanoProfessor())){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean verificarRegente(Professor a){
+        for(Curso b : listaCursos){
+            for(UC c : b.getListaUCs()){
+                if(c.getRegenteUC().equals(a.getNMecanoProfessor())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean verificarRegenteUC(Professor a,UC b){
+        if(b.getRegenteUC().equals(a.getNMecanoProfessor())){
+            return true;
+        }
+        return false;
+    }
+    
+    public Professor verificarLogin(String nome, String numeromecanog){
+        int count=0;
+        for(Professor a : listaProfessores){
+            if(a.getNomeProfessor().equals(nome) && a.getNMecanoProfessor().equals(numeromecanog)){
+                count = 1 + count;
+                return a;
+            }
+        }
+        if(count==0){
+            System.err.print("Professor não registrado no sistema");
+        }
+        return null;
+    }
+    
     public void addProfessor(Professor a){
         listaProfessores.add(a);
     }
@@ -351,22 +399,50 @@ public class Sistema {
 
 
 // Função para salvar o estado do Sistema em um arquivo
-    public void salvarEstado() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("estado"))) {
-            oos.writeObject(listaCursos);
-            oos.writeObject(listaProfessores);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    // Função para carregar o estado do Sistema a partir de um arquivo
     public void carregarEstado() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("estado"))) {
+    File file = new File("Estado.txt");
+    ObjectInputStream ois = null;
+
+    try {
+        ois = new ObjectInputStream(new FileInputStream(file));
+
+        if (file.exists()) {
             listaCursos = (ArrayList<Curso>) ois.readObject();
             listaProfessores = (ArrayList<Professor>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        } else {
+            salvarEstado(); // Cria um novo arquivo ao carregar se não existir
+        }
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+    } finally {
+        // Bloco finally para garantir que o ObjectInputStream seja fechado
+        if (ois != null) {
+            try {
+                ois.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+    public void salvarEstado() {
+        ObjectOutputStream out = null;
+        try{
+            out = new ObjectOutputStream(new FileOutputStream("Estado.txt"));
+            out.writeObject(listaCursos);
+            out.writeObject(listaProfessores);
+        } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+        // Bloco finally para garantir que o ObjectInputStream seja fechado
+        if (out != null) {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            }
         }
     }
     

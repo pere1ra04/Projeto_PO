@@ -31,7 +31,7 @@ public class ProjectPO extends Consola {
 
     public void login() {
 
-        //sistema.carregarEstado();
+        sistema.carregarEstado();
         consola.converterParaAscii("Login:");
 
 
@@ -196,7 +196,7 @@ public class ProjectPO extends Consola {
                     break;
                     
                     case 4:
-                       //sistema.ListarProfessores();
+                       sistema.ListarProfessores();
                     break;
 
                 }
