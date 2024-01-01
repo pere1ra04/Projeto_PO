@@ -12,7 +12,7 @@ import java.io.*;
  *
  * @author user
  */
-public class Sistema {
+public class Sistema implements Serializable {
     private ArrayList<Curso> listaCursos= new ArrayList<>();
     private ArrayList<Professor> listaProfessores= new ArrayList<>();
  
@@ -398,7 +398,7 @@ public class Sistema {
 
 
 
-// Função para salvar o estado do Sistema em um arquivo
+/* Função para salvar o estado do Sistema em um arquivo
     public void carregarEstado() {
     File file = new File("Estado.txt");
     ObjectInputStream ois = null;
@@ -444,8 +444,8 @@ public class Sistema {
             }
             }
         }
-    }
+    }*/
     
     
     
-}
+} 

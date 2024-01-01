@@ -4,13 +4,7 @@
 package FrontEnd;
 
 //import BackEnd.ListaUCs;
-import BackEnd.Admnistrador;
-import BackEnd.Sistema;
-import BackEnd.Professor;
-import BackEnd.Aluno;
-import BackEnd.Curso;
-import BackEnd.Sumario;
-import BackEnd.UC;
+import BackEnd.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -21,7 +15,8 @@ import java.util.ArrayList;
 public class ProjectPO extends Consola {
 
     private final Consola consola = new Consola();
-    private final Sistema sistema = new Sistema();
+    Ficheiro ficheiro = new Ficheiro("Estado.txt");
+    //private final Sistema sistema = new Sistema();
     Admnistrador adm = new Admnistrador("ADM", "000000");
 
     public static void main(String[] args) throws Exception {
@@ -30,8 +25,17 @@ public class ProjectPO extends Consola {
     }
 
     public void login() {
+        Sistema sistema;
 
-        sistema.carregarEstado();
+        if (!ficheiro.getFile().exists()) {
+            sistema = new Sistema();
+        } else {
+            sistema = ficheiro.carregarEstado();
+            if (sistema == null) {
+                sistema = new Sistema();
+            }
+        }
+        //sistema.carregarEstado();
         consola.converterParaAscii("Login:");
 
 
@@ -88,12 +92,12 @@ public class ProjectPO extends Consola {
             }
         }
         if (adm.verificarAdmnistrador(nome, numero)) {
-            menuAdministrador();
+            menuAdministrador(sistema);
         }else{
-        exibirMenuPrincipal();
+            exibirMenuPrincipal(sistema);
         }
    }
-    public void exibirMenuPrincipal() {
+    public void exibirMenuPrincipal(Sistema sistema) {
         while (true) {
             consola.converterParaAscii("Gestao de Departamento");
             consola.escrever("\n----- Menu Principal -----");
@@ -112,25 +116,26 @@ public class ProjectPO extends Consola {
             opcao = consola.lerInteiros(opcoes);
             switch (opcao) {
                 case 1:
-                    menuProfessores();
+                    menuProfessores(sistema);
                     break;
                 case 2:
-                    menuRegente();
+                    menuRegente(sistema);
                     break;
                 case 3:
-                    menuDiretorCurso();
+                    menuDiretorCurso(sistema);
                     break;
                 case 4:
                     consola.escrever("Saindo do programa. Até mais!");
-                    sistema.salvarEstado();
-                    System.exit(0);
+                    ficheiro.salvarEstado(sistema);
+                    //sistema.salvarEstado();
+                    //System.exit(0);
                     break;
 
             }
         }
     }
 
-    public void menuAdministrador() {
+    public void menuAdministrador(Sistema sistema) {
 
         consola.converterParaAscii("Menu Admistrador");
         int opcao;
@@ -146,28 +151,29 @@ public class ProjectPO extends Consola {
         opcao = consola.lerInteiros(opcoes);
         switch (opcao) {
             case 1:
-                menuINFprofs();
+                menuINFprofs(sistema);
             break;
                 
             case 2:
-                menuINFcursos();
+                menuINFcursos(sistema);
             break;
 
             case 3:
-                menuINFuc();
+                menuINFuc(sistema);
             break;
 
             case 4:
                 consola.escrever("Saindo do programa. Até mais!");
+                ficheiro.salvarEstado(sistema);
                 //sistema.salvarEstado();
-                System.exit(0);
+                //System.exit(0);
                 break;
 
         }
     }while(opcao!=4);
 }
     
-    public void menuINFprofs(){
+    public void menuINFprofs(Sistema sistema){
         int opcao;
         do{
                 String[] opcoes = {
@@ -182,7 +188,7 @@ public class ProjectPO extends Consola {
                 opcao = consola.lerInteiros(opcoes);
                 switch(opcao){
                     case 1:
-                        criarProfessor();
+                        criarProfessor(sistema);
                     break;
                     
                     case 2:
@@ -192,7 +198,7 @@ public class ProjectPO extends Consola {
                     
                     case 3:
                         String ALTstor = consola.lerString("Digite o nome do Professor a ser alterado:");
-                        //alterarInformacoesProfessor(ALTstor);
+                        //alterarInformacoesProfessor(ALTstor, sistema);
                     break;
                     
                     case 4:
@@ -203,7 +209,7 @@ public class ProjectPO extends Consola {
         }while(opcao!=5);
     }
     
-    public void menuINFcursos(){
+    public void menuINFcursos(Sistema sistema){
         int opcao;
         do{
                 String[] opcoes = {
@@ -219,7 +225,7 @@ public class ProjectPO extends Consola {
                 opcao = consola.lerInteiros(opcoes);
                 switch(opcao){
                     case 1:
-                        criarCurso();
+                        criarCurso(sistema);
                     break;
                     
                     case 2:
@@ -250,7 +256,7 @@ public class ProjectPO extends Consola {
         }while(opcao!=5);
     }
     
-    public void menuINFuc(){
+    public void menuINFuc(Sistema sistema){
         int opcao;
         do{
                 String[] opcoes = {
@@ -266,7 +272,7 @@ public class ProjectPO extends Consola {
                 opcao = consola.lerInteiros(opcoes);
                 switch(opcao){
                     case 1:
-                        criarUc();
+                        criarUc(sistema);
                     break;
                     
                     case 2:
@@ -299,7 +305,7 @@ public class ProjectPO extends Consola {
         }while(opcao!=5);
     }
     
-    public void menuProfessores() {
+    public void menuProfessores(Sistema sistema) {
 
         consola.converterParaAscii("Menu Professor");
         int opcao;
@@ -331,7 +337,7 @@ public class ProjectPO extends Consola {
       }while(opcao!=4);
     }
 
-    public void menuRegente() {
+    public void menuRegente(Sistema sistema) {
 
         consola.converterParaAscii("Menu Regente da UC: "); //ADICIONAR O NOME DA UC POR REFERNCIA
         int opcao;
@@ -347,7 +353,7 @@ public class ProjectPO extends Consola {
         opcao = consola.lerInteiros(opcoes);
         switch (opcao) {
             case 1:
-                criarAluno();
+                criarAluno(sistema);
                 //info
                 break;
 
@@ -362,7 +368,7 @@ public class ProjectPO extends Consola {
       }while(opcao!=4);
     }
 
-    public void menuDiretorCurso() {
+    public void menuDiretorCurso(Sistema sistema) {
 
         consola.converterParaAscii("Menu Diretor de Curso    : "); //ADICIONAR O NOME Do curso POR REFERNCIA
         int opcao;
@@ -399,7 +405,7 @@ public class ProjectPO extends Consola {
     }
 
     //Funções CRIAR
-    public void criarCurso() {
+    public void criarCurso(Sistema sistema) {
         String designacaoCurso = consola.lerString("Designação:");
         String diretorCurso = consola.lerString("Regente UC:");
 
@@ -407,14 +413,14 @@ public class ProjectPO extends Consola {
         sistema.addCurso(curso);
     }
 
-    public void criarUc() {
+    public void criarUc(Sistema sistema) {
         String designacaoUC = consola.lerString("Designação:");
         String regenteUC = consola.lerString("Regente UC:");
 
         UC uc = new UC(designacaoUC, regenteUC);
     }
     
-    public void criarProfessor() {
+    public void criarProfessor(Sistema sistema) {
         int count=0, count2=0, count3=0;
         String nomeProfessor = "";
         String nMecanoProfessor = "";
@@ -529,7 +535,7 @@ public class ProjectPO extends Consola {
     
     
 
-    public void criarSumario(){
+    public void criarSumario(Sistema sistema){
 
         String titulo = consola.lerString("Titulo:");
         String tipo = consola.lerString("Tipo de Sumario");
@@ -542,7 +548,7 @@ public class ProjectPO extends Consola {
         
     }
 
-    public void criarAluno() {
+    public void criarAluno(Sistema sistema) {
         String nomeAluno = consola.lerString("Nome do Aluno: ");
         String nMecanoAluno = consola.lerString("Numero Mecanografico: ");
         String curso = consola.lerString("Curso: ");
@@ -551,7 +557,7 @@ public class ProjectPO extends Consola {
         
     }
 
-    public void alterarInformacoesProfessor(Professor a) {
+    public void alterarInformacoesProfessor(Professor a, Sistema sistema) {
         int opcao;
         String[] opcoes = {
             "Alterar Nome ",
