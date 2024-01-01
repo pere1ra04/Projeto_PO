@@ -35,9 +35,6 @@ public class ProjectPO extends Consola {
                 sistema = new Sistema();
             }
         }
-        //sistema.carregarEstado();
-        consola.converterParaAscii("Login:");
-
 
         consola.converterParaAscii("LOGIN:");
 
@@ -94,10 +91,11 @@ public class ProjectPO extends Consola {
         if (adm.verificarAdmnistrador(nome, numero)) {
             menuAdministrador(sistema);
         }else{
-            exibirMenuPrincipal(sistema);
+            
+            exibirMenuPrincipal(sistema, professor);//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         }
    }
-    public void exibirMenuPrincipal(Sistema sistema) {
+    public void exibirMenuPrincipal(Sistema sistema, Professor professor) {
         while (true) {
             consola.converterParaAscii("Gestao de Departamento");
             consola.escrever("\n----- Menu Principal -----");
@@ -116,7 +114,7 @@ public class ProjectPO extends Consola {
             opcao = consola.lerInteiros(opcoes);
             switch (opcao) {
                 case 1:
-                    menuProfessores(sistema);
+                    menuProfessores(sistema, professor);
                     break;
                 case 2:
                     menuRegente(sistema);
@@ -305,7 +303,7 @@ public class ProjectPO extends Consola {
         }while(opcao!=5);
     }
     
-    public void menuProfessores(Sistema sistema) {
+    public void menuProfessores(Sistema sistema, Professor professor) {
 
         consola.converterParaAscii("Menu Professor");
         int opcao;
@@ -321,7 +319,7 @@ public class ProjectPO extends Consola {
         opcao = consola.lerInteiros(opcoes);
         switch (opcao) {
             case 1:
-                //criarSumario();
+                criarSumario(sistema, professor);
                 break;
 
             case 2:
@@ -535,7 +533,7 @@ public class ProjectPO extends Consola {
     
     
 
-    public void criarSumario(Sistema sistema){
+    public void criarSumario(Sistema sistema, Professor professor){
 
         String titulo = consola.lerString("Titulo:");
         String tipo = consola.lerString("Tipo de Sumario");
@@ -545,7 +543,7 @@ public class ProjectPO extends Consola {
         //ArrayList<Aluno> presencas =  new ArrayList<>();
 
         Sumario sumario = new Sumario(titulo, tipo, uc, textoSumario, data_hora/*,presencas*/);
-        
+        professor.addSumario(sumario);
     }
 
     public void criarAluno(Sistema sistema) {
