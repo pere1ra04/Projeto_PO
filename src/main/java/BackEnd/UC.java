@@ -31,6 +31,10 @@ public class UC {
     public void adicionarProfessoruc(Professor a){
         equipaDocente.add(a);
     }
+    public void removerProfessoruc (Professor a){
+        equipaDocente.remove(a);
+        
+    }
     
     public String getDesignacaoUC() {
         return designacaoUC;

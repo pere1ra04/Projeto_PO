@@ -338,36 +338,31 @@ public class Sistema implements Serializable {
         }
     }
     
-    public void tornarRegente(String nome, String uc){
-       boolean professorEncontrado = false;
-       boolean ucEncontrada = false;
-        for (Professor a : listaProfessores) {
-            if (a.getNomeProfessor().equals(nome)) {
-                professorEncontrado = true;
+    public void tornarRegente(String codigo, String uc, Sistema sistema) {
+    for (Professor professor : sistema.getListaProfessores()) {
+        if (codigo.equals(professor.getNMecanoProfessor())) {
+            System.out.println("1");
 
             // Verificar se a UC existe e se já tem regente
-            for (UC b : a.getListaUCs()) {
-                if (b.getDesignacaoUC().equals(uc)) {
-                    ucEncontrada = true;
+            for (UC unidadeCurricular : professor.getListaUCs()) {
+                if (uc.equals(unidadeCurricular.getDesignacaoUC())) {
+                    System.out.println("2");
 
-                    if (b.getRegenteUC() == null) {
-                        b.setRegenteUC(nome);
+                    if (unidadeCurricular.getRegenteUC() == null) {
+                        // Assumindo que setRegenteUC() espera um objeto Professor como argumento
+                        unidadeCurricular.setRegenteUC(codigo);
+                        
+                        // AtribuirUC(codigo, uc);
+                        // Certifique-se de que AtribuirUC(codigo, uc) faz sentido aqui no seu sistema
+                        System.out.println("3");
                     } else {
                         System.out.println("Esta Unidade Curricular já tem Regente");
                     }
                 }
             }
-
-            if (!ucEncontrada) {
-                System.out.println("Unidade Curricular não encontrada");
-            }
-            break; 
-            }
-            if (!professorEncontrado) {
-                System.out.println("Professor não encontrado");
-            }
         }
     }
+}
     
     public void tirarRegente(String uc){
         boolean ucEncontrada = false;
@@ -444,7 +439,23 @@ public class Sistema implements Serializable {
         }
     }
 
-
+    public UC verificarCargoRegente(Professor professor) {
+        for (UC uc : professor.getListaUCs()) {
+            if (uc.getRegenteUC().equals(professor.getNMecanoProfessor())) {
+                return uc;
+            }
+        }
+        return null;
+    }
+    
+    public Curso verificarCargoDiretor (Professor professor){
+        for (Curso curso: listaCursos){
+            if(curso.getDiretorCurso().equals(professor.getNMecanoProfessor()))
+                return curso;
+        }
+        return null;
+    }
+    
 
 
 

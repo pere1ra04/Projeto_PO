@@ -42,7 +42,6 @@ public class Ficheiro {
     }
 
     public void salvarEstado(Sistema sistema) {
-        System.out.println("cona");
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Estado.txt"))) {
             oos.writeObject(sistema);
         } catch (IOException e) {

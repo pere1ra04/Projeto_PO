@@ -120,12 +120,21 @@ public class ProjectPO extends Consola {
                     menuProfessores(sistema, professor);
                     break;
                 case 2:
-                    //fazer verificação que ele é regente e returnar o uc
-                    menuRegente(sistema,professor,uc);
+                    UC ucEncontrada = sistema.verificarCargoRegente(professor);
+                        if (ucEncontrada != null) {
+                            menuRegente(sistema, professor, ucEncontrada);
+                        }else{
+                            consola.escreverErro("Não tem Permissões para aceder!");
+                        }
                     break;
                 case 3:
-                    //fazer verificação que ele é diretor e returnar o curso
-                    menuDiretorCurso(sistema,professor,curso);
+                    Curso cursoEncontrado = sistema.verificarCargoDiretor(professor);
+                        if (cursoEncontrado!=null){
+                            menuDiretorCurso(sistema,professor,cursoEncontrado);
+                        }
+                        else{
+                            consola.escreverErro("Não tem Permissões para aceder!");
+                        }
                     break;
                 case 4:
                     consola.escrever("Saindo do programa. Até mais!");
@@ -308,7 +317,8 @@ public class ProjectPO extends Consola {
                     case 4:
                         String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
                         String uc1 = consola.lerString("Qual a Unidade Curricular: ");
-                        sistema.tornarRegente(nome,uc1);
+                        sistema.tornarRegente(nome,uc1, sistema);
+                        
                     break;
                     
                     case 5:
@@ -454,7 +464,7 @@ public class ProjectPO extends Consola {
             if(sistema.verificarExistenciadeNumeroMecanog(regenteUC)){
                 count = count + 1;
             } else {
-                consola.escreverErro("\nEste Numero Mecanografico não existe, logo é impossivel ser atribuido um Diretor.");
+                consola.escreverErro("\nEste Numero Mecanografico não existe, logo é impossivel ser atribuido um Regente.");
             }
             
         }   
@@ -463,6 +473,7 @@ public class ProjectPO extends Consola {
         if(curso !=null){
             UC uc = new UC(designacaoUC, regenteUC);
             curso.adicionarUCs(uc);
+            sistema.AtribuirUC(regenteUC, uc.getDesignacaoUC());
         }else{
             consola.escreverErro("Curso não existe.");
         }   
