@@ -91,8 +91,11 @@ public class ProjectPO extends Consola {
         if (adm.verificarAdmnistrador(nome, numero)) {
             menuAdministrador(sistema);
         }else{
+            Professor professor = sistema.verificarLogin(nome, numero);
+            if(professor != null){
+                exibirMenuPrincipal(sistema, professor);
+            }
             
-            exibirMenuPrincipal(sistema, professor);//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         }
    }
     public void exibirMenuPrincipal(Sistema sistema, Professor professor) {
@@ -179,6 +182,8 @@ public class ProjectPO extends Consola {
                   "Apagar Professor",
                   "Alterar Informações de Professor",
                   "Listar todos os Professores",
+                  "Atribuir UC",
+                  "Listar Professores por UC",
                   "Voltar",};
                 consola.escrever("\nIntroduza a opção pretendida:");
                 
@@ -202,9 +207,22 @@ public class ProjectPO extends Consola {
                     case 4:
                        sistema.ListarProfessores();
                     break;
-
+                    
+                    case 5:
+                        String UCstor = consola.lerString("Digite o Número Mecanográfico do Professor a ser atribuido uma UC:");
+                        String Storuc = consola.lerString("Digite a designação da UC ao qual o professor vai se juntar:");
+                        if(sistema.AtribuirUC(UCstor, Storuc)){
+                            consola.escrever("Professor adicionado com sucesso.");
+                        }else{
+                            consola.escreverErro("Professor já existe na UC, ou erro.");
+                        }
+                        
+                    break;
+                    case 6:
+                        sistema.ListarProfessoresPorTodosOsCursos();
+                        break;
                 }
-        }while(opcao!=5);
+        }while(opcao!=7);
     }
     
     public void menuINFcursos(Sistema sistema){
@@ -251,7 +269,7 @@ public class ProjectPO extends Consola {
                         sistema.ListarCurso();
                     break;
                 }
-        }while(opcao!=5);
+        }while(opcao!=7);
     }
     
     public void menuINFuc(Sistema sistema){
@@ -300,7 +318,7 @@ public class ProjectPO extends Consola {
                         sistema.ListarUCs();
                     break;
                 }
-        }while(opcao!=5);
+        }while(opcao!=7);
     }
     
     public void menuProfessores(Sistema sistema, Professor professor) {
@@ -404,19 +422,47 @@ public class ProjectPO extends Consola {
 
     //Funções CRIAR
     public void criarCurso(Sistema sistema) {
+        int count=0;
         String designacaoCurso = consola.lerString("Designação:");
-        String diretorCurso = consola.lerString("Regente UC:");
+        String diretorCurso = "";
+        while (count != 1) {
+            diretorCurso = consola.lerString("Número Mecanográfico do Diretor de curso:");
+            if(sistema.verificarExistenciadeNumeroMecanog(diretorCurso)){
+                count = count + 1;
+            } else {
+                consola.escreverErro("\nEste Numero Mecanografico não existe, logo é impossivel ser atribuido um Diretor.");
+            }
+            
+        }
 
         Curso curso = new Curso(designacaoCurso, diretorCurso);
         sistema.addCurso(curso);
     }
 
     public void criarUc(Sistema sistema) {
+        int count=0, count2=0;
         String designacaoUC = consola.lerString("Designação:");
-        String regenteUC = consola.lerString("Regente UC:");
+        String regenteUC = "";
+        while (count != 1) {
+            regenteUC = consola.lerString("Número Mecanográfico do Regente da UC:");
+            if(sistema.verificarExistenciadeNumeroMecanog(regenteUC)){
+                count = count + 1;
+            } else {
+                consola.escreverErro("\nEste Numero Mecanografico não existe, logo é impossivel ser atribuido um Diretor.");
+            }
+            
+        }   
+        String designacaoCurso = consola.lerString("Designação do Curso a ser atribuido esta UC:");
+        Curso curso = sistema.verificarCurso(designacaoCurso);
+        if(curso !=null){
+            UC uc = new UC(designacaoUC, regenteUC);
+            curso.adicionarUCs(uc);
+        }else{
+            consola.escreverErro("Curso não existe.");
+        }   
+}
 
-        UC uc = new UC(designacaoUC, regenteUC);
-    }
+    
     
     public void criarProfessor(Sistema sistema) {
         int count=0, count2=0, count3=0;

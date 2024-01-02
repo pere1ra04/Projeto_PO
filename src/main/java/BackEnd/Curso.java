@@ -30,6 +30,10 @@ public class Curso implements Serializable {
         setDiretorCurso(diretorCurso);
     }
 
+    public void adicionarUCs(UC a){
+        listaUCs.add(a);
+    }
+    
     public String getDesignacaoCurso() {
         return designacaoCurso;
     }

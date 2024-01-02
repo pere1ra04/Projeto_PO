@@ -31,6 +31,20 @@ public class Sistema implements Serializable {
         return false;
     }
     
+    public Curso verificarCurso(String curso){
+        int count=0;
+        for(Curso a : listaCursos){
+           if(a.getDesignacaoCurso().equals(curso)){
+            count=count +1;
+            return a;
+            } 
+        }
+        if(count!=0){
+            System.err.print("Curso não existe");
+        }
+        return null;
+    }
+    
     public boolean verificarDiretorCurso(Professor a,Curso b){
         if(b.getDiretorCurso().equals(a.getNMecanoProfessor())){
             return true;
@@ -100,8 +114,36 @@ public class Sistema implements Serializable {
         }
     }
     
-
-    
+    public boolean AtribuirUC(String stor, String uc){
+        int count=0;
+        for(Curso a : listaCursos){
+            for(UC b : a.getListaUCs()){
+                if(b.getDesignacaoUC().equals(uc)){
+                    for(Professor c : b.getEquipaDocente()){
+                        if(c.getNMecanoProfessor().equals(stor)){
+                            count=count+1;
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        if(count==0){
+        for(Curso a : listaCursos){
+            for(UC b : a.getListaUCs()){
+                if(b.getDesignacaoUC().equals(uc)){
+                    for(Professor c : listaProfessores){
+                     if(c.getNMecanoProfessor().equals(stor)){
+                           b.adicionarProfessoruc(c);
+                           c.addUC(b);
+                        }
+                    } 
+                }
+            }
+        }
+    }
+        return true;
+    }
     public void ListarUCs(){
         for (Curso a: listaCursos){
             for(UC b : a.getListaUCs()){

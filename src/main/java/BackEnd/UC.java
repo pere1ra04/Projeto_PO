@@ -28,6 +28,10 @@ public class UC {
         setRegenteUC(regenteUC);
     }
     
+    public void adicionarProfessoruc(Professor a){
+        equipaDocente.add(a);
+    }
+    
     public String getDesignacaoUC() {
         return designacaoUC;
     }
