@@ -70,14 +70,12 @@ public class Curso implements Serializable {
         listaAlunos.add(a);
     }
     
-    public void removerAlunoCurso(Aluno a) {
-        listaAlunos.remove(a);
-    }
-    
 
     @Override
     public String toString() {
         return "Curso{" + "designacaoCurso=" + designacaoCurso + ", diretorCurso=" + diretorCurso + '}';
     }
+
+    
     
 }

@@ -21,7 +21,7 @@ public class Sistema implements Serializable {
     public ArrayList<Curso> getListaCursos() {
         return listaCursos;
     }
-    
+   
     public Aluno verificarAlunoCurso(String codigo,String curso){
         for(Curso c: listaCursos){
             if(c.getDesignacaoCurso().equals(curso)){
@@ -35,6 +35,28 @@ public class Sistema implements Serializable {
         return null;
     }
     
+    public void removerAlunoCurso(Aluno a) {
+        for(Curso b : listaCursos){
+            for(Aluno c : b.getListaAlunos()){
+                if(c.getNMecanoAluno().equals(a)){
+                    b.getListaAlunos().remove(a);
+                }
+            }
+        }
+        
+    }
+    
+    public boolean verificarUC (String uc){
+        for(Curso a : listaCursos){
+            for(UC b : a.getListaUCs()){
+                if(b.getDesignacaoUC().equals(uc)){
+                    return true;
+                }
+            }
+        }
+        return false;
+}
+    
     public boolean verificarDiretor(Professor a){
         for(Curso b : listaCursos){
             if(b.getDiretorCurso().equals(a.getNMecanoProfessor())){
@@ -43,6 +65,8 @@ public class Sistema implements Serializable {
         }
         return false;
     }
+    
+    
     
     public Curso verificarCurso(String curso){
         int count=0;

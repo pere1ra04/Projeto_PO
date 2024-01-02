@@ -248,6 +248,7 @@ public class ProjectPO extends Consola {
                   "Listar Cursos",
                   "Adicionar Aluno Curso",
                   "Remover Aluno Curso",
+                  "Listar alunos",
                   "Voltar",};
                 consola.escrever("Introduza a opção pretendida:");
                 
@@ -289,10 +290,13 @@ public class ProjectPO extends Consola {
                     case 8:
                         String codigo = consola.lerString("Codigo de Aluno a remover:");
                         String curso = consola.lerString("A que Curso quer remover:");
-                        sistema.verificarCurso(curso).removerAlunoCurso(sistema.verificarAlunoCurso(codigo,curso));
+                        sistema.removerAlunoCurso(sistema.verificarAlunoCurso(codigo,curso));
                     break;
+                    case 9:
+                        sistema.ListarAlunos();
+                        break;
                 }
-        }while(opcao!=9);
+        }while(opcao!=10);
     }
     
     public void menuINFuc(Sistema sistema){
@@ -600,10 +604,38 @@ public class ProjectPO extends Consola {
     
 
     public void criarSumario(Sistema sistema, Professor professor){
-
+        int count=0;
+        int opcao;
         String titulo = consola.lerString("Titulo:");
-        String tipo = consola.lerString("Tipo de Sumario");
-        String uc = consola.lerString("Uc:");
+        String tipo = "";
+        String[] opcoes = {
+            "Teórica (T)",
+            "Teórico-Prática (TP)",
+            "Prático-Laboratorial (PL)",};
+        consola.escrever("Tipo de Sumario");
+        opcao = consola.lerInteiros(opcoes);
+        switch (opcao) {
+            case 1:
+                tipo = "T";
+                break;
+
+            case 2:
+                tipo = "TP";
+                break;
+
+            case 3:
+                tipo = "PL";
+                break;
+        }
+        String uc = "";
+        while(count!=1){
+            uc = consola.lerString("Uc:");
+            if(sistema.verificarUC(uc)){
+                count = count + 1;
+            }else{
+                consola.escreverErro("UC não existe");
+            }
+        }
         String textoSumario = consola.lerString("Sumario:");
         LocalDateTime data_hora = consola.lerDataHora("Data e Hora:");
         //ArrayList<Aluno> presencas =  new ArrayList<>();
