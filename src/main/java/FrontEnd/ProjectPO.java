@@ -120,10 +120,12 @@ public class ProjectPO extends Consola {
                     menuProfessores(sistema, professor);
                     break;
                 case 2:
-                    menuRegente(sistema);
+                    //fazer verificação que ele é regente e returnar o uc
+                    menuRegente(sistema,professor,uc);
                     break;
                 case 3:
-                    menuDiretorCurso(sistema);
+                    //fazer verificação que ele é diretor e returnar o curso
+                    menuDiretorCurso(sistema,professor,curso);
                     break;
                 case 4:
                     consola.escrever("Saindo do programa. Até mais!");
@@ -255,9 +257,9 @@ public class ProjectPO extends Consola {
                     break;
                     
                     case 4:
-                        String nomeProf = consola.lerString("Digite o nome do Professor que deseja tornar Diretor de Curso:");
+                        String codProf = consola.lerString("Digite o Numero Mecanografico do Professor que deseja tornar Diretor de Curso:");
                         String nomeCurso = consola.lerString("Digite o nome do Curso:");
-                        sistema.tornarDiretorCurso(nomeProf, nomeCurso);
+                        sistema.tornarDiretorCurso(codProf, nomeCurso);
                     break;
                     
                     case 5:
@@ -353,7 +355,7 @@ public class ProjectPO extends Consola {
       }while(opcao!=4);
     }
 
-    public void menuRegente(Sistema sistema) {
+    public void menuRegente(Sistema sistema,Professor regente,UC uc) {
 
         consola.converterParaAscii("Menu Regente da UC: "); //ADICIONAR O NOME DA UC POR REFERNCIA
         int opcao;
@@ -370,11 +372,10 @@ public class ProjectPO extends Consola {
         switch (opcao) {
             case 1:
                 criarAluno(sistema);
-                //info
                 break;
 
             case 2:
-                //info
+                String aluno = consola.lerString("Qual o Aluno que deseja remover:");
                 break;
 
             case 3:
@@ -384,7 +385,7 @@ public class ProjectPO extends Consola {
       }while(opcao!=4);
     }
 
-    public void menuDiretorCurso(Sistema sistema) {
+    public void menuDiretorCurso(Sistema sistema,Professor professor,Curso curso) {
 
         consola.converterParaAscii("Menu Diretor de Curso    : "); //ADICIONAR O NOME Do curso POR REFERNCIA
         int opcao;
@@ -393,6 +394,8 @@ public class ProjectPO extends Consola {
             "Alterar Designação do Curso",
             "Listar Alunos",
             "Listar Professores",
+            "Adicionar Aluno ao Curso",
+            "Remover Aluno ao Curso",
             "Sair",};
 
         consola.escrever("Inttroduza a opção pretendida");
@@ -401,23 +404,26 @@ public class ProjectPO extends Consola {
 
         switch (opcao) {
             case 1:
-                //mudarDesignação(a);
-                //info
+                mudarDesignação(curso);
                 break;
 
             case 2:
-                String nomedocurso = consola.lerString("Nome do Curso:");
-//                Sistema.NumeroAlunosCurso(nomedocurso);
-                //depois têm que se mudar de forma com que o diretor só liste do seu curso
+                sistema.NumeroAlunosCurso(curso);
                 break;
 
             case 3:
-                String nomedocurso2 = consola.lerString("Nome do Curso:");
-  //              Sistema.ListarProfessoresPorCurso(nomedocurso2);
-                //depois têm que se mudar de forma com que o diretor só liste do seu curso
+                //sistema.ListarProfessoresPorCurso(curso);
+                //tenho de trocar a função
+                break;
+            case 4:
+                criarAluno(sistema);
+                break;
+            case 5:
+                String codigo = consola.lerString("Codigo de Aluno a remover:");
+                curso.removerAlunoCurso(sistema.verificarAlunoCurso(codigo,curso));
                 break;
         }
-      }while(opcao!=4);
+      }while(opcao!=6);
     }
 
     //Funções CRIAR
@@ -598,6 +604,11 @@ public class ProjectPO extends Consola {
         String curso = consola.lerString("Curso: ");
 
         Aluno aluno = new Aluno(nomeAluno, nMecanoAluno, curso);
+        for(Curso c : sistema.getListaCursos()){
+            if(c.getDesignacaoCurso().equals(curso)){
+                c.inserirAlunoCurso(aluno);
+            }
+        }
         
     }
 

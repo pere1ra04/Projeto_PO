@@ -22,6 +22,15 @@ public class Sistema implements Serializable {
         return listaCursos;
     }
     
+    public Aluno verificarAlunoCurso(String codigo,Curso curso){
+        for(Aluno a: curso.getListaAlunos()){
+            if(a.getNMecanoAluno().equals(codigo)){
+                return a;
+            }
+        }
+        return null;
+    }
+    
     public boolean verificarDiretor(Professor a){
         for(Curso b : listaCursos){
             if(b.getDiretorCurso().equals(a.getNMecanoProfessor())){
@@ -171,18 +180,15 @@ public class Sistema implements Serializable {
         }
     }
     
-    public int NumeroAlunosCurso(String Curso){
+    public int NumeroAlunosCurso(Curso curso){
         int totalAlunos = 0;
-        for(Curso a : listaCursos){
-            if(a.getDesignacaoCurso().equals(Curso)){
-                for(Aluno b : a.getListaAlunos()){
-                    totalAlunos++;
-                }
-            }
+        for(Aluno b : curso.getListaAlunos()){
+            totalAlunos++;
         }
         return totalAlunos;
     }
-    public void ListarProfessoresPorCurso(String Curso){
+
+    public void ListarNumeroProfessores(Curso Curso){
             System.out.printf("\t-> %s\n", Curso);
             for(Curso a : listaCursos){
                 if(a.getDesignacaoCurso().equals(Curso)){
@@ -386,11 +392,11 @@ public class Sistema implements Serializable {
         
     }
     
-    public void tornarDiretorCurso(String nome, String curso){
+    public void tornarDiretorCurso(String codigo, String curso){
         boolean professorEncontrado = false;
         
         for (Professor a : listaProfessores) {
-            if (a.getNomeProfessor().equals(nome)) {
+            if (a.getNMecanoProfessor().equals(codigo)) {
                 professorEncontrado = true;
 
                 boolean cursoEncontrado = false;
@@ -401,7 +407,7 @@ public class Sistema implements Serializable {
                         cursoEncontrado = true;
 
                     if (c.getDiretorCurso() == null) {
-                        c.setDiretorCurso(nome);
+                        c.setDiretorCurso(codigo);
                     } else {
                         System.out.println("Este Curso já tem Diretor");
                     }
