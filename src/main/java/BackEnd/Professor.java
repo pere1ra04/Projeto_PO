@@ -12,11 +12,12 @@ import java.util.ArrayList;
  * @author user
  */
 public class Professor implements Serializable {
+
     private String nomeProfessor;
     private String nMecanoProfessor;
     private String dataInicio;
-    private ArrayList<UC> listaUCs= new ArrayList<>();
-    private ArrayList<Sumario> listaSumarios= new ArrayList<>();
+    private ArrayList<UC> listaUCs = new ArrayList<>();
+    private ArrayList<Sumario> listaSumarios = new ArrayList<>();
 
     public Professor(String nome, String nmecano, String dataInicio, ArrayList<UC> listaUC, ArrayList<Sumario> listaSumarios) {
         setNomeProfessor(nome);
@@ -25,38 +26,38 @@ public class Professor implements Serializable {
         setListaUCs(listaUC);
         setListaSumarios(listaSumarios);
     }
-    
+
     public Professor(String nome, String nmecano, String dataInicio) {
         setNomeProfessor(nome);
         setNMecanoProfessor(nmecano);
         setDataInicio(dataInicio);
 
     }
-    
-    public void addUC(UC a){
+
+    public void addUC(UC a) {
         listaUCs.add(a);
     }
-    
-    public void removerUC(String designacao){
-        for(UC a : listaUCs){
-            if(a.getDesignacaoUC().equals(designacao)){
+
+    public void removerUC(String designacao) {
+        for (UC a : listaUCs) {
+            if (a.getDesignacaoUC().equals(designacao)) {
                 listaUCs.remove(a);
             }
         }
     }
-    
-    public void addSumario(Sumario a){
+
+    public void addSumario(Sumario a) {
         listaSumarios.add(a);
     }
-    
-    public void removerSumario(String titulo){
-        for(Sumario a : listaSumarios){
-            if(a.getTitulo().equals(titulo)){
+
+    public void removerSumario(String titulo) {
+        for (Sumario a : listaSumarios) {
+            if (a.getTitulo().equals(titulo)) {
                 listaSumarios.remove(a);
             }
         }
     }
-    
+
     public String getNomeProfessor() {
         return nomeProfessor;
     }
@@ -81,7 +82,6 @@ public class Professor implements Serializable {
         this.dataInicio = dataInicio;
     }
 
-
     public ArrayList<UC> getListaUCs() {
         return listaUCs;
     }
@@ -97,26 +97,25 @@ public class Professor implements Serializable {
     public void setListaSumarios(ArrayList<Sumario> listaSumarios) {
         this.listaSumarios = listaSumarios;
     }
-    
+
     public void inserirServicoDocente(UC a) {
         listaUCs.add(a);
     }
-    
+
     public void removerServicoDocente(UC a) {
         listaUCs.remove(a);
     }
-    
+
     public void listaServicoDocente() {
         for (UC a : listaUCs) {
-            System.out.printf("->UC: %s\n",a.getDesignacaoUC());
-            System.out.printf("->Regente: %s\n",a.getRegenteUC());
+            System.out.printf("->UC: %s\n", a.getDesignacaoUC());
+            System.out.printf("->Regente: %s\n", a.getRegenteUC());
         }
     }
-    
+
     @Override
     public String toString() {
         return "Professor{" + "nomeProfessor=" + nomeProfessor + ", nMecanoProfessor=" + nMecanoProfessor + ", dataInicio=" + dataInicio + '}';
     }
 
 }
-

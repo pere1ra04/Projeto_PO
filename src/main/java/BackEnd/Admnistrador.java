@@ -9,6 +9,7 @@ package BackEnd;
  * @author user
  */
 public class Admnistrador {
+
     private String nomeAdm;
     private String codigoAdm;
 
@@ -32,8 +33,8 @@ public class Admnistrador {
     public void setCodigoAdm(String codigoAdm) {
         this.codigoAdm = codigoAdm;
     }
-    
-    public boolean verificarAdmnistrador(String nomeAdm,String codigoAdm){
-        return ((this.getNomeAdm().equals(nomeAdm))&&(this.getCodigoAdm().equals(codigoAdm)));
+
+    public boolean verificarAdmnistrador(String nomeAdm, String codigoAdm) {
+        return ((this.getNomeAdm().equals(nomeAdm)) && (this.getCodigoAdm().equals(codigoAdm)));
     }
 }

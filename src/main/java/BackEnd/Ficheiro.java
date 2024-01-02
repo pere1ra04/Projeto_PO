@@ -17,11 +17,11 @@ import java.util.ArrayList;
  *
  * @author user
  */
-
 public class Ficheiro {
+
     private File file;
 
-    public Ficheiro (String file) {
+    public Ficheiro(String file) {
         this.file = new File(file);
     }
 

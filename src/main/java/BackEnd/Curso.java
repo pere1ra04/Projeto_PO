@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * @author user
  */
 public class Curso implements Serializable {
+
     private String designacaoCurso;
     private String diretorCurso;
-    private ArrayList<UC> listaUCs= new ArrayList<>();
-    private ArrayList<Aluno> listaAlunos= new ArrayList<>(); 
-    
+    private ArrayList<UC> listaUCs = new ArrayList<>();
+    private ArrayList<Aluno> listaAlunos = new ArrayList<>();
 
     public Curso(String designacaoCurso, String diretorCurso, ArrayList<UC> listaUC, ArrayList<Aluno> listaAlunos) {
         setDesignacaoCurso(designacaoCurso);
@@ -24,16 +24,16 @@ public class Curso implements Serializable {
         setListaUCs(listaUC);
         setListaAlunos(listaAlunos);
     }
-    
-    public Curso(String designacaoCurso, String diretorCurso){
+
+    public Curso(String designacaoCurso, String diretorCurso) {
         setDesignacaoCurso(designacaoCurso);
         setDiretorCurso(diretorCurso);
     }
 
-    public void adicionarUCs(UC a){
+    public void adicionarUCs(UC a) {
         listaUCs.add(a);
     }
-    
+
     public String getDesignacaoCurso() {
         return designacaoCurso;
     }
@@ -65,17 +65,14 @@ public class Curso implements Serializable {
     public void setListaAlunos(ArrayList<Aluno> listaAlunos) {
         this.listaAlunos = listaAlunos;
     }
- 
+
     public void inserirAlunoCurso(Aluno a) {
         listaAlunos.add(a);
     }
-    
 
     @Override
     public String toString() {
         return "Curso{" + "designacaoCurso=" + designacaoCurso + ", diretorCurso=" + diretorCurso + '}';
     }
 
-    
-    
 }

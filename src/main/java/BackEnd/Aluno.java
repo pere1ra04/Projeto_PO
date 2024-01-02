@@ -11,8 +11,9 @@ import java.io.Serializable;
  * @author user
  */
 public class Aluno implements Serializable {
+
     private String nomeAluno;
-    private String nMecanoAluno; 
+    private String nMecanoAluno;
     private String curso;
 
     public Aluno(String nomeAluno, String nmecanoAluno, String curso) {
@@ -48,5 +49,5 @@ public class Aluno implements Serializable {
     @Override
     public String toString() {
         return "Aluno{" + "nomeAluno=" + nomeAluno + ", nMecanoAluno=" + nMecanoAluno + ", curso=" + curso + '}';
-    }   
+    }
 }

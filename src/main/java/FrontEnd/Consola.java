@@ -17,9 +17,9 @@ import java.util.Scanner;
  * @author user
  */
 public class Consola {
+
     private final Scanner scanner = new Scanner(System.in);
-    
-  
+
     public void escrever(String mensagem) {
         System.out.println(mensagem);
     }
@@ -32,8 +32,7 @@ public class Consola {
         escrever(mensagem);
         return scanner.nextLine();
     }
-    
-    
+
     public int lerInteiro(String mensagem) {
         Integer numero = null;
         String texto;
@@ -52,8 +51,7 @@ public class Consola {
 
         return numero;
     }
-    
-    
+
     public int lerInteiros(String[] opcoes) {
         Integer numero = null;
         String texto = "";
@@ -80,8 +78,8 @@ public class Consola {
 
         return numero;
     }
-    
-        public LocalDateTime lerDataHora(String mensagem) {
+
+    public LocalDateTime lerDataHora(String mensagem) {
         LocalDateTime data = null;
         String texto;
 
@@ -90,7 +88,7 @@ public class Consola {
             texto = scanner.nextLine();
 
             try {
-                data = LocalDateTime.parse(texto, 
+                data = LocalDateTime.parse(texto,
                         DateTimeFormatter.ofPattern("d/M/yyyy HH:mm"));
             } catch (DateTimeParseException e) {
                 escreverErro(texto + " nÃ£o Ã© um data no formato dd/mm/aaaa hh:mm");
@@ -100,7 +98,7 @@ public class Consola {
 
         return data;
     }
-    
+
     public static void converterParaAscii(String texto) {
         for (int i = 0; i < texto.length(); i++) {
             char caractere = texto.charAt(i);
@@ -122,7 +120,7 @@ public class Consola {
                 return false;
             }
         }
-    
+
         return true;
     }
 
@@ -132,15 +130,12 @@ public class Consola {
                 return false;
             }
         }
-    
+
         return true;
     }
-    
-    public String DatadeIniciotoString(int dia, int mes, int ano){
+
+    public String DatadeIniciotoString(int dia, int mes, int ano) {
         return dia + "/" + mes + "/" + ano;
     }
-    
-    
+
 }
-
-
