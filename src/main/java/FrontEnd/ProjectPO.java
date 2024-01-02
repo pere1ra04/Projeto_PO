@@ -436,8 +436,7 @@ public class ProjectPO extends Consola {
                 break;
 
             case 3:
-                //sistema.ListarProfessoresPorCurso(curso);
-                //tenho de trocar a função
+                sistema.listarNumeroProfessores(curso);
                 break;
         }
       }while(opcao!=4);

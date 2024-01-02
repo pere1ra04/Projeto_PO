@@ -208,28 +208,24 @@ public class Sistema implements Serializable {
         }
     }
     
-    public int NumeroAlunosCurso(Curso curso){
+    public void NumeroAlunosCurso(Curso curso){
         int totalAlunos = 0;
         for(Aluno b : curso.getListaAlunos()){
-            totalAlunos++;
+            totalAlunos = totalAlunos + 1;
         }
-        return totalAlunos;
+        System.out.printf("O numero de Alunos neste curso é: %d",totalAlunos);
     }
 
-    public void ListarNumeroProfessores(Curso Curso){
-            System.out.printf("\t-> %s\n", Curso);
-            for(Curso a : listaCursos){
-                if(a.getDesignacaoCurso().equals(Curso)){
-                    for(UC b : a.getListaUCs()){
-                        for(Professor c : b.getEquipaDocente()){
-                            System.out.printf("Nome: %s\n", c.getNomeProfessor());
-                            System.out.printf("Numero Mecanografico: %s\n", c.getNMecanoProfessor());
-                            System.out.print("\n");
-                }
+    public void listarNumeroProfessores(Curso curso){
+        int totalProf = 0;
+        System.out.printf("\t-> %s\n", curso.getDesignacaoCurso());
+        for(UC b : curso.getListaUCs()){
+            for(Professor c : b.getEquipaDocente()){
+                totalProf= totalProf + 1;
             }
         }
-    }
-}
+        System.out.printf("O numero de Professores neste curso é: %d",totalProf);
+    } 
     
     
     public void ListarProfessores(){
