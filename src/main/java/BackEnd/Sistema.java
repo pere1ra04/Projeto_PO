@@ -253,6 +253,28 @@ public class Sistema implements Serializable {
         }
     }
     
+    public boolean verificarAluno(String codigo){
+        for (Curso c: listaCursos){
+            for(Aluno a: c.getListaAlunos()){
+                if(a.getNMecanoAluno().equals(codigo)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public Aluno verificarAlunoObjeto(String codigo){
+        for (Curso c: listaCursos){
+            for(Aluno a: c.getListaAlunos()){
+                if(a.getNMecanoAluno().equals(codigo)){
+                    return a;
+                }
+            }
+        }
+        return null;
+    }
+    
     public void ListarSumariosPorUCEPorTipo(Professor p){
         String tipo1="T", tipo2="PL", tipo3="TP";
         for(UC a : p.getListaUCs()){

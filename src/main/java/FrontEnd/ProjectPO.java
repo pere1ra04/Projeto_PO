@@ -637,9 +637,25 @@ public class ProjectPO extends Consola {
         }
         String textoSumario = consola.lerString("Sumario:");
         LocalDateTime data_hora = consola.lerDataHora("Data e Hora:");
-        //ArrayList<Aluno> presencas =  new ArrayList<>();
-
-        Sumario sumario = new Sumario(titulo, tipo, uc, textoSumario, data_hora/*,presencas*/);
+        ArrayList<Aluno> presencas =  new ArrayList<>();
+        
+         // Loop para adicionar códigos dos alunos presentes
+         consola.escrever("Adicione os códigos dos alunos presentes (pressione Enter para terminar):");
+            boolean adicionarMaisAlunos = true;
+            while (adicionarMaisAlunos) {
+                String codigoAluno = consola.lerString("Código do Aluno (ou Enter para terminar):");
+                if (!codigoAluno.isEmpty()) {
+                    // Verifica se o código do aluno existe no sistema
+                    if (sistema.verificarAluno(codigoAluno)) {
+                            presencas.add(sistema.verificarAlunoObjeto(codigoAluno));
+                    } else {
+                            consola.escreverErro("Aluno não existe. Por favor, verifique o código do aluno.");
+                       }
+                } else {
+                    adicionarMaisAlunos = false;
+                }
+        }
+        Sumario sumario = new Sumario(titulo, tipo, uc, textoSumario, data_hora, presencas);
         professor.addSumario(sumario);
     }
 

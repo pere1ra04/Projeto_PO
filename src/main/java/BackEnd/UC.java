@@ -5,13 +5,14 @@
 package BackEnd;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
-public class UC {
+public class UC implements Serializable {
     private String designacaoUC;
     private String regenteUC;
     private ArrayList<Professor> equipaDocente= new ArrayList<>();

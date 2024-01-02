@@ -4,13 +4,13 @@
  */
 package BackEnd;
 
-
+import java.io.Serializable;
 
 /**
  *
  * @author user
  */
-public class Aluno {
+public class Aluno implements Serializable {
     private String nomeAluno;
     private String nMecanoAluno; 
     private String curso;

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Sumario {
+public class Sumario implements Serializable {
     private String titulo;
     private String tipo;
     private String UC;
@@ -86,6 +86,8 @@ public class Sumario {
         }
         return false;
     }
+    
+   
 
     @Override
     public String toString() {
