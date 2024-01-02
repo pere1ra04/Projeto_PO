@@ -208,6 +208,23 @@ public class Sistema implements Serializable {
         }
     }
     
+    public void consultarAssiduidade(String codigo,UC uc){
+        for(Professor p: listaProfessores){
+            for(Sumario s: p.getListaSumarios()){
+                if(s.getUC().equals(uc.getDesignacaoUC())){
+                    for(Aluno a: s.getPresencas()){
+                        if(a.getNMecanoAluno().equals(codigo)){
+                            System.out.printf("\t\t->%s\n", s.getUC());
+                            System.out.printf("\tAula: %s\n", s.getTipo());
+                            System.out.printf("Titulo: %s\n", s.getTitulo());
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
     public void NumeroAlunosCurso(Curso curso){
         int totalAlunos = 0;
         for(Aluno b : curso.getListaAlunos()){
@@ -280,12 +297,12 @@ public class Sistema implements Serializable {
         for(UC a : p.getListaUCs()){
             for(Sumario b : p.getListaSumarios()){
                 if(a.getDesignacaoUC().equals(b.getUC())){
-                    System.out.printf("\t\t->%s\n", a.getDesignacaoUC());
+                    System.out.printf("->%s\n", a.getDesignacaoUC());
                     if(tipo1.equals(b.getTipo())){
                         System.out.printf("\tAula: %s\n", b.getTipo());
                         System.out.printf("Titulo: %s\n", b.getTitulo());
                         System.out.printf("Sumario: %s\n", b.getSumario());
-                        System.out.printf("Lista de Alunos: ");
+                        System.out.printf("Lista de Alunos:\n ");
                         for(Aluno c : b.getPresencas()){
                             System.out.printf("Nome: %s\n", c.getNomeAluno());
                             System.out.printf("Numero Mecanografico: %s\n", c.getNMecanoAluno());

@@ -369,13 +369,11 @@ public class ProjectPO extends Consola {
                 break;
 
             case 2:
-                //sistema.ListarSumariosPorUCEPorTipo(p);
-                //passar como argumento o professor, quando se faz o login tentar passar o objeto Professor
-                //se não mudar o parametro recebido depois
+                sistema.ListarSumariosPorUCEPorTipo(professor);
                 break;
 
             case 3:
-                //info
+                professor.listaServicoDocente();
                 break;
         }
       }while(opcao!=4);
@@ -405,7 +403,8 @@ public class ProjectPO extends Consola {
                 break;
 
             case 3:
-                //info
+                String codigo =consola.lerString("Qual é o codigo do Aluno:");
+                sistema.consultarAssiduidade(codigo,uc);
                 break;
         }
       }while(opcao!=4);

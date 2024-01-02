@@ -105,19 +105,6 @@ public class Professor implements Serializable {
     public void removerServicoDocente(UC a) {
         listaUCs.remove(a);
     }
-
-    public void listaSumariosPorTipoUC(String Tipo,String UC) {
-        for (Sumario a : listaSumarios) {
-            if(a.getUC().equals(UC)){
-                if(a.getTipo().equals(Tipo)){
-                    System.out.printf("->Titulo: %s\n",a.getTitulo());
-                    System.out.printf("->Tipo: %s\n",a.getTipo());
-                    System.out.printf("->Data: %s\n",a.getData_hora());
-                    System.out.printf("->Sumario: %s",a.getSumario());
-                }
-            }
-        }
-    }
     
     public void listaServicoDocente() {
         for (UC a : listaUCs) {
