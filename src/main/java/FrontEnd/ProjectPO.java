@@ -140,7 +140,7 @@ public class ProjectPO extends Consola {
                     consola.escrever("Saindo do programa. Até mais!");
                     ficheiro.salvarEstado(sistema);
                     //sistema.salvarEstado();
-                    //System.exit(0);
+                    System.exit(0);
                     break;
 
             }
@@ -207,7 +207,7 @@ public class ProjectPO extends Consola {
                     
                     case 2:
                         String RMVstor = consola.lerString("Digite o nome do Professor a ser apagado do Sistema:");
-                        sistema.removerProfessor(RMVstor);
+                        sistema.removerProfessor(RMVstor,sistema);
                     break;
                     
                     case 3:
@@ -246,6 +246,8 @@ public class ProjectPO extends Consola {
                   "Tornar Diretor de Curso",
                   "Eliminar Cargo de Diretor de Curso",
                   "Listar Cursos",
+                  "Adicionar Aluno Curso",
+                  "Remover Aluno Curso",
                   "Voltar",};
                 consola.escrever("Introduza a opção pretendida:");
                 
@@ -279,8 +281,18 @@ public class ProjectPO extends Consola {
                     case 6:
                         sistema.ListarCurso();
                     break;
+                    
+                    case 7:
+                        criarAluno(sistema);
+                    break;
+                        
+                    case 8:
+                        String codigo = consola.lerString("Codigo de Aluno a remover:");
+                        String curso = consola.lerString("A que Curso quer remover:");
+                        sistema.verificarCurso(curso).removerAlunoCurso(sistema.verificarAlunoCurso(codigo,curso));
+                    break;
                 }
-        }while(opcao!=7);
+        }while(opcao!=9);
     }
     
     public void menuINFuc(Sistema sistema){
@@ -317,7 +329,7 @@ public class ProjectPO extends Consola {
                     case 4:
                         String nome = consola.lerString("Qual o nome do professor que deseja tornar Regente:");
                         String uc1 = consola.lerString("Qual a Unidade Curricular: ");
-                        sistema.tornarRegente(nome,uc1, sistema);
+                        sistema.tornarRegente(nome,uc1,sistema);
                         
                     break;
                     
@@ -402,10 +414,8 @@ public class ProjectPO extends Consola {
         do{
         String[] opcoes = {
             "Alterar Designação do Curso",
-            "Listar Alunos",
-            "Listar Professores",
-            "Adicionar Aluno ao Curso",
-            "Remover Aluno ao Curso",
+            "Listar Numero Alunos",
+            "Listar Numero Professores",
             "Sair",};
 
         consola.escrever("Inttroduza a opção pretendida");
@@ -425,15 +435,8 @@ public class ProjectPO extends Consola {
                 //sistema.ListarProfessoresPorCurso(curso);
                 //tenho de trocar a função
                 break;
-            case 4:
-                criarAluno(sistema);
-                break;
-            case 5:
-                String codigo = consola.lerString("Codigo de Aluno a remover:");
-                curso.removerAlunoCurso(sistema.verificarAlunoCurso(codigo,curso));
-                break;
         }
-      }while(opcao!=6);
+      }while(opcao!=4);
     }
 
     //Funções CRIAR

@@ -22,10 +22,14 @@ public class Sistema implements Serializable {
         return listaCursos;
     }
     
-    public Aluno verificarAlunoCurso(String codigo,Curso curso){
-        for(Aluno a: curso.getListaAlunos()){
-            if(a.getNMecanoAluno().equals(codigo)){
-                return a;
+    public Aluno verificarAlunoCurso(String codigo,String curso){
+        for(Curso c: listaCursos){
+            if(c.getDesignacaoCurso().equals(curso)){
+                for(Aluno a: c.getListaAlunos()){
+                    if(a.getNMecanoAluno().equals(codigo)){
+                        return a;
+                    }
+                }
             }
         }
         return null;
@@ -97,7 +101,7 @@ public class Sistema implements Serializable {
         listaProfessores.add(a);
     }
     
-    public void removerProfessor(String nome){
+    public void removerProfessor(String nome,Sistema sistema){
         for(Professor a : listaProfessores){
             if(a.getNomeProfessor().equals(nome)){
                 listaProfessores.remove(a);
@@ -338,23 +342,16 @@ public class Sistema implements Serializable {
         }
     }
     
-    public void tornarRegente(String codigo, String uc, Sistema sistema) {
-    for (Professor professor : sistema.getListaProfessores()) {
-        if (codigo.equals(professor.getNMecanoProfessor())) {
-            System.out.println("1");
-
-            // Verificar se a UC existe e se já tem regente
-            for (UC unidadeCurricular : professor.getListaUCs()) {
-                if (uc.equals(unidadeCurricular.getDesignacaoUC())) {
-                    System.out.println("2");
-
-                    if (unidadeCurricular.getRegenteUC() == null) {
+    public void tornarRegente(String codigo, String uc,Sistema sistema) {
+    for (Curso a : listaCursos) {
+        for (UC b : a.getListaUCs()) {
+                if (uc.equals(b.getDesignacaoUC())) {
+                    if (b.getRegenteUC() == null) {
                         // Assumindo que setRegenteUC() espera um objeto Professor como argumento
-                        unidadeCurricular.setRegenteUC(codigo);
-                        
-                        // AtribuirUC(codigo, uc);
-                        // Certifique-se de que AtribuirUC(codigo, uc) faz sentido aqui no seu sistema
-                        System.out.println("3");
+                        b.setRegenteUC(codigo);
+
+                        AtribuirUC(codigo, uc);
+                        //Certifique-se de que AtribuirUC(codigo, uc) faz sentido aqui no seu sistema
                     } else {
                         System.out.println("Esta Unidade Curricular já tem Regente");
                     }
@@ -362,7 +359,6 @@ public class Sistema implements Serializable {
             }
         }
     }
-}
     
     public void tirarRegente(String uc){
         boolean ucEncontrada = false;
