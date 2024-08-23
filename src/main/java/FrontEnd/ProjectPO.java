@@ -149,6 +149,7 @@ public class ProjectPO extends Consola {
     public void menuAdministrador(Sistema sistema) {
 
         consola.converterParaAscii("Menu Admistrador");
+        consola.escrever("\n");
         int opcao;
         do {
             String[] opcoes = {
@@ -157,7 +158,6 @@ public class ProjectPO extends Consola {
                 "Informações de UCS",
                 "Sair",};
 
-            consola.escrever("Introduza a opção pretendida");
 
             opcao = consola.lerInteiros(opcoes);
             switch (opcao) {
